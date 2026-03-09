@@ -1,0 +1,53 @@
+<section class="min-h-screen bg-gradient-to-br from-blue-950 to-purple-950 content-center">
+    <form [formGroup]="loginform" (ngSubmit)="submitForm()"
+        class="w-full max-w-xl mx-auto min-h-8 bg-white rounded-2xl">
+        <div class="px-5 py-10">
+            <h1 class="font-extrabold text-blue-950  text-3xl text-center">LogIn</h1>
+            <div class="sm:col-span-3 mb-4">
+                <label for="username" class="block text-sm/6 font-medium text-blue-950">Username</label>
+                <div class="mt-2">
+                    <input id="username" type="text" name="username" formControlName="username"
+                        autocomplete="given-username" placeholder="Enter your Username"
+                        class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-blue-950 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-950 sm:text-sm/6" />
+                </div>
+            </div>
+            @if(loginform.get('username')?.invalid && loginform.get('username')?.touched){
+            <div class=" mt-1 mb-2 rounded-md p-1">
+                <div>
+                    <ul class="list-disc pl-4">
+                        @if(loginform.get('username')?.hasError('required')){<li class="text-rose-900 text-xs"> Name
+                            can't be null</li> }
+                    </ul>
+                </div>
+            </div>
+            }
+            <div class="sm:col-span-4 mb-4">
+                <label for="password" class="block text-sm/6 font-medium text-blue-950">Password</label>
+                <div class="mt-2">
+                    <input id="password" type="password" name="password" formControlName="password"
+                        placeholder="Enter your Password"
+                        class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-blue-950 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-950 sm:text-sm/6" />
+                </div>
+            </div>
+            @if(loginform.get('password')?.invalid && loginform.get('password')?.touched){
+            <div class=" mt-1 mb-2 rounded-md p-1">
+                <div>
+                    <ul class="list-disc pl-4">
+                        @if(loginform.get('password')?.hasError('required')){
+                        <li class="text-rose-900 text-xs"> password can't be null</li> }
+                    </ul>
+                </div>
+            </div>
+            }
+            <div class="">
+                <Button
+                    class="rounded-md bg-gradient-to-br from-blue-700 to-purple-800  w-75 block mx-auto my-2 text-white font-bold cursor-pointer">LogIn</Button>
+            </div>
+            <button class="cursor-pointer text-blue-900 font-bold block mx-auto"> <a routerLink="/register">Create New
+                    Account </a></button>
+            @if(msgError){
+            <p class="text-center mt-4 bg-pink-200 text-red-950 font-bold w-75 mx-auto p-1">{{msgError}}</p>
+            }
+        </div>
+    </form>
+</section>

@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss';
+@import 'flowbite/src/themes/default';
+@plugin "flowbite/plugin";
+@import 'ngx-toastr/toastr';
+@source "../node_modules/flowbite";
+@theme {
+  --color-maincolor: rgb(0, 41, 141);
+  --color-secondcolor: #f0f2f5;
+}
+*{
+    font-family: "Nunito", sans-serif;
+}

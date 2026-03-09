@@ -1,0 +1,188 @@
+<section class="min-h-screen bg-gradient-to-br from-blue-950 to-purple-950 border  content-center py-6">
+    <form [formGroup]="registerform" (ngSubmit)="submitForm()"
+        class="w-full max-w-xl mx-auto min-h-8 bg-white  border border-blue-400 rounded-2xl">
+        <div class="px-5 py-10">
+            <h1 class="font-extrabold text-blue-950  text-3xl text-center">REGISTER <i
+                    class="fa-regular fa-pen-to-square"></i></h1>
+            <p class=" text-gray-500 text-center">Create new account</p>
+            <div class="sm:col-span-3 mb-2">
+                <label for="fullname" class="block text-sm/6 font-medium text-blue-950">Full name</label>
+                <div class="mt-2">
+                    <input [class]="{'' : registerform.get('name')?.valid , 
+                        'outline-red-800' : registerform.get('name')?.invalid && registerform.get('name')?.touched
+                }" id="fullname" type="text" name="fullname" autocomplete="given-name" formControlName="name"
+                        placeholder="Enter your Full Name"
+                        class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-blue-950 outline-1 -outline-offset-1 outline-blue-950 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-950 sm:text-sm/6" />
+                </div>
+            </div>
+            @if(registerform.get('name')?.invalid && registerform.get('name')?.touched){
+            <div class=" mt-1 mb-2 rounded-md p-1">
+                <div>   
+                    <ul class="list-disc pl-4">
+                        @if(registerform.get('name')?.hasError('required')){<li class="text-rose-900 text-xs"> Name can't
+                            be null</li> }
+                        @else if(registerform.get('name')?.hasError('minlength')) {<li class="text-rose-900 text-xs">
+                            Name should be at least 3 characters</li>}
+                    </ul>
+                </div>
+            </div>
+            }
+            <div class="sm:col-span-3 mb-2">
+                <label for="username" class="block text-sm/6 font-medium text-blue-950 ">Username</label>
+                <div class="mt-2">
+                    <input [class]="{'' : registerform.get('username')?.valid , 
+                        'outline-red-800' : registerform.get('username')?.invalid && registerform.get('username')?.touched
+                }" id="username" type="text" name="username" autocomplete="given-username" formControlName="username"
+                        placeholder="Enter your Username"
+                        class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-blue-950 outline-1 -outline-offset-1 outline-blue-950 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-950 sm:text-sm/6" />
+                </div>
+            </div>
+            @if(registerform.get('username')?.invalid && registerform.get('username')?.touched){
+            <div class=" mt-1 mb-2 rounded-md p-1">
+                <div>
+                    <ul class="list-disc pl-4">
+                        @if(registerform.get('username')?.hasError('required')){<li class="text-rose-900 text-xs"> Name
+                            can't
+                            be null</li> }
+                        @else if(registerform.get('username')?.hasError('minlength')) {<li class="text-rose-900 text-xs">
+                            username should be at least 3 characters</li>}
+                    </ul>
+                </div>
+            </div>
+            }
+            <div class="sm:col-span-4 mb-2">
+                <label for="email" class="block text-sm/6 font-medium text-blue-950 ">Email address</label>
+                <div class="mt-2">
+                    <input [class]="{'' : registerform.get('email')?.valid , 
+                        'outline-red-800' : registerform.get('email')?.invalid && registerform.get('email')?.touched
+                }" id="email" type="email" name="email" autocomplete="email" formControlName="email"
+                        placeholder="email@gmail.com"
+                        class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-blue-950 outline-1 -outline-offset-1 outline-blue-950 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-950 sm:text-sm/6" />
+                </div>
+            </div>
+            @if(registerform.get('email')?.invalid && registerform.get('email')?.touched){
+            <div class=" mt-1 mb-2 rounded-md p-1">
+                <div>
+                    <ul class="list-disc pl-4">
+                        @if(registerform.get('email')?.hasError('required')){
+                        <li class="text-rose-900 text-xs"> email can't be null</li> }
+                        @else if(registerform.get('email')?.hasError('email')) {<li class="text-rose-900 text-xs">
+                            email is not valid</li>}
+                    </ul>
+                </div>
+            </div>
+            }
+            <div class="sm:col-span-4 mb-2">
+                <label for="dateOfBirth" class="block text-sm/6 font-medium text-blue-950 ">Email address</label>
+                <div class="mt-2">
+                    <input [class]="{'' : registerform.get('dateOfBirth')?.valid , 
+                        'outline-red-800' : registerform.get('dateOfBirth')?.invalid && registerform.get('dateOfBirth')?.touched
+                }" id="dateOfBirth" type="date" name="email" autocomplete="date" formControlName="dateOfBirth"
+                        class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-blue-950 outline-1 -outline-offset-1 outline-blue-950 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-950 sm:text-sm/6" />
+                </div>
+            </div>
+            @if(registerform.get('dateOfBirth')?.invalid && registerform.get('dateOfBirth')?.touched){
+            <div class=" mt-1 mb-2 rounded-md p-1">
+                <div>
+                    <ul class="list-disc pl-4">
+                        @if(registerform.get('dateOfBirth')?.hasError('required')){
+                        <li class="text-rose-900 text-xs"> email can't be null</li> }
+                    </ul>
+                </div>
+            </div>
+            }
+            <div class="sm:col-span-3 mb-2">
+                <label for="gender" class="block text-sm/6 font-medium text-blue-950 ">gender</label>
+                <div class="mt-2 grid grid-cols-1">
+                    <select id="gender" name="gender" autocomplete="gender" formControlName="gender" [class]="{'' : registerform.get('gender')?.valid , 
+                        'outline-red-800' : registerform.get('gender')?.invalid && registerform.get('gender')?.touched
+                }" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white/10 py-1.5 pr-8 pl-3 text-base text-gray-500 outline-1 -outline-offset-1 outline-blue-950 *:bg-gray focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-950 sm:text-sm/6">
+                        <option value="" disabled selected>Select gender</option>
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                    </select>
+                    <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true"
+                        class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-400 sm:size-4">
+                        <path
+                            d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+                            clip-rule="evenodd" fill-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+            @if(registerform.get('gender')?.invalid && registerform.get('gender')?.touched){
+            <div class=" mt-1 mb-2 rounded-md p-1">
+                <div>
+                    <ul class="list-disc pl-4">
+                        @if(registerform.get('gender')?.hasError('required')){
+                        <li class="text-rose-900 text-xs"> gender can't be null</li> }
+                    </ul>
+                </div>
+            </div>
+            }
+            <div class="sm:col-span-4 mb-2">
+                <label for="password" class="block text-sm/6 font-medium text-blue-950 ">Password</label>
+                <div class="mt-2">
+                    <input [class]="{'' : registerform.get('password')?.valid , 
+                        'outline-red-800' : registerform.get('password')?.invalid && registerform.get('password')?.touched
+                }" id="password" type="password" name="password" placeholder="Enter your Password"
+                        formControlName="password"
+                        class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-blue-950 outline-1 -outline-offset-1 outline-blue-950 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-950 sm:text-sm/6" />
+                </div>
+            </div>
+            @if(registerform.get('password')?.invalid && registerform.get('password')?.touched){
+            <div class=" mt-1 mb-2 rounded-md p-1">
+                <div>
+                    <ul class="list-disc pl-4">
+                        @if(registerform.get('password')?.hasError('required')){
+                        <li class="text-rose-900 text-xs"> password can't be null</li> }
+                        @else if(registerform.get('password')?.hasError('pattern')) {<li class="text-rose-900 text-xs">
+                            password should have special characters and capital character and at lesat 8 </li>}
+                    </ul>
+                </div>
+            </div>
+            }
+            <div class="sm:col-span-4 mb-2">
+                <label for="rePassword" class="block text-sm/6 font-medium text-blue-950 ">Confirm password</label>
+                <div class="mt-2">
+                    <input [class]="{'' : registerform.get('rePassword')?.valid , 
+                        'outline-red-800' : registerform.get('rePassword')?.invalid && registerform.get('rePassword')?.touched
+                }" id="rePassword" type="password" name="rePassword" placeholder="confirm your password"
+                        formControlName="rePassword"
+                        class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-blue-950 outline-1 -outline-offset-1 outline-blue-950 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-950 sm:text-sm/6" />
+                </div>
+            </div>
+            @if(registerform.get('rePassword')?.invalid && registerform.get('rePassword')?.touched){
+            <div class=" mt-1 mb-2 rounded-md p-1">
+                <div>
+                    <ul class="list-disc pl-4">
+                        @if(registerform.get('rePassword')?.hasError('required')){
+                        <li class="text-rose-900 text-xs"> rePassword can't be null</li> }
+                        @if(registerform.get('rePassword')?.hasError('mismatch')){
+                        <li class="text-rose-900 text-xs">confirm password don't match</li> }
+                        @else if(registerform.get('rePassword')?.hasError('pattern')) {<li class="text-rose-900 text-xs">
+                            password should have special characters and capital character and at lesat 8 </li>}
+                    </ul>
+                </div>
+            </div>
+            }
+            <div class="">
+                <!-- [disabled]="registerform.invalid" -->
+                <button
+                    class="disabled:bg-gray-400 rounded-md bg-gradient-to-br from-blue-700 to-purple-800  w-75 block mx-auto my-2 text-white font-bold cursor-pointer py-2 mt-8">
+                    @if(!loading){
+                    CREATE
+                    }
+                    @else {
+                    Loading...
+                    }
+
+                </button>
+            </div>
+            <a class="cursor-pointer text-blue-900 font-bold block mx-auto text-center" routerLink="/login">
+                Already have an account ?</a>
+            @if(msgError){
+            <p class="text-center mt-4 bg-pink-200 text-red-950 font-bold w-75 mx-auto p-1">{{msgError}}</p>
+            }
+        </div>
+    </form>
+</section>
