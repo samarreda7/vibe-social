@@ -21,7 +21,7 @@
                 <div class="flex items-center gap-1 text-[12px] text-slate-500 mb-1">
                     <span>@{{comment.commentCreator.username}}</span>
                     <span>&middot;</span>
-                    <span>{{comment.createdAt}}</span>
+                    <!-- <span>{{comment.createdAt  | date:'medium'}}</span> -->
                 </div>
 
                 @if(comment.content){
@@ -35,33 +35,42 @@
             </div>
 
             <div class="flex items-center gap-3 mt-1 ml-2 text-[12px] text-slate-500 font-semibold">
-                <span class="cursor-pointer hover:underline">{{comment.createdAt}}</span>
-                <button [class.text-blue-500]="isLikedByMe(comment)" (click)="LikeUnlikePost(comment.post,comment._id)" 
-                class="cursor-pointer hover:underline">Like ({{comment.likes.length}})</button>
+                <span class="cursor-pointer hover:underline">{{comment.createdAt | date:'medium'}}</span>
+                <button [class.text-blue-500]="isLikedByMe(comment)" (click)="LikeUnlikePost(comment.post,comment._id)"
+                    class="cursor-pointer hover:underline">Like ({{comment.likes.length}})</button>
                 <button class="cursor-pointer hover:underline">Reply</button>
-                <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots"
-                    class="w-6 h-6 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <i class="fa-solid fa-ellipsis"></i>
-                </button>
-                <div id="dropdownDots"
-                    class="z-30 hidden group-hover:block absolute bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
-                    <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownMenuIconButton">
-                        <li>
-                            <button
-                                class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
-                                Save Post
-                            </button>
-                           
-                            <button
-                                class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
-                                Edit post
-                            </button>
-                            <button 
-                                class="inline-flex text-red-700 items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
-                                Delete post
-                            </button>
-                        </li>
-                    </ul>
+                <div class="relative">
+
+                    <!-- button -->
+                    <button (click)="toggleMenu(comment._id)"
+                        class="w-7 h-7 flex items-center justify-center rounded-full hover:bg-slate-200 transition">
+
+                        <i class="fa-solid fa-ellipsis text-slate-600"></i>
+                    </button>
+
+                    <!-- dropdown -->
+                    @if(openMenuId === comment._id){
+                    <div class="absolute right-0 mt-2 w-36 bg-white border border-slate-200 rounded-lg shadow-lg z-50">
+
+                        <ul class="text-sm text-slate-700">
+
+                            <li>
+                                <button class="w-full text-left px-3 py-2 hover:bg-slate-100 rounded-t-lg">
+                                    Edit
+                                </button>
+                            </li>
+
+                            <li>
+                                <button class="w-full text-left px-3 py-2 text-red-600 hover:bg-slate-100 rounded-b-lg">
+                                    Delete
+                                </button>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    }
+
                 </div>
             </div>
         </div>

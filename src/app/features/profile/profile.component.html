@@ -1,1 +1,113 @@
-<p>profile works!</p>
+<div class="min-h-screen bg-slate-100 font-sans p-6">
+
+  <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-lg bg-white mb-6">
+    <div class="h-36 w-full bg-gradient-to-br from-blue-950 to-purple-950"></div>
+
+    <div class="bg-slate-50 px-8 py-6">
+      <div class="flex flex-col md:flex-row md:items-start gap-6">
+
+        <div class="-mt-16 shrink-0">
+          <div class="w-24 h-24 rounded-full border-4 border-white shadow-md bg-white overflow-hidden">
+            <img [src]="profileData?.photo" alt="Avatar" class="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        <div class="flex-1 mt-1">
+          <h1 class="text-2xl font-bold text-slate-800">{{profileData?.name}}</h1>
+          <p class="text-slate-400 text-sm mb-2">@{{profileData?.username}}</p>
+          <span
+            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-medium">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Route Posts member
+          </span>
+        </div>
+
+        <div class="flex gap-3">
+          <div
+            class="flex flex-col items-center justify-center px-5 py-3 bg-white rounded-xl border border-slate-200 shadow-sm min-w-[90px]">
+            <span class="text-[10px] font-semibold text-slate-400 tracking-widest mb-1">FOLLOWERS</span>
+            <span class="text-2xl font-bold text-slate-800">{{profileData?.followersCount}}</span>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center px-5 py-3 bg-white rounded-xl border border-slate-200 shadow-sm min-w-[90px]">
+            <span class="text-[10px] font-semibold text-slate-400 tracking-widest mb-1">FOLLOWING</span>
+            <span class="text-2xl font-bold text-slate-800">{{profileData?.followingCount}}</span>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center px-5 py-3 bg-white rounded-xl border border-slate-200 shadow-sm min-w-[90px]">
+            <span class="text-[10px] font-semibold text-slate-400 tracking-widest mb-1">BOOKMARKS</span>
+            <span class="text-2xl font-bold text-slate-800">{{profileData?.bookmarksCount}}</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">About</p>
+          <div class="flex items-center gap-2 text-slate-600 text-sm mb-2">
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            {{profileData?.email}}
+          </div>
+          <div class="flex items-center gap-2 text-slate-600 text-sm">
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            Active on Route Posts
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <div class="bg-white rounded-xl border border-slate-200 p-5 flex-1">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">MY POSTS</p>
+            <p class="text-2xl font-bold text-slate-800">1</p>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-5 flex-1">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">SAVED POSTS</p>
+            <p class="text-2xl font-bold text-slate-800">0</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto">
+
+    <div
+      class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 px-4 py-3 flex items-center justify-between">
+      <div class="flex gap-2">
+        <button
+          class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          My Posts
+        </button>
+        <button
+          class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-slate-500 hover:bg-slate-100">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+          </svg>
+          Saved
+        </button>
+      </div>
+      <span
+        class="bg-blue-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">1</span>
+    </div>
+
+    @for (post of postsList; track post._id) {
+    <app-post [post]="post" [userId]="userId" (onLike)="LikeUnlikePost($event)"
+      (onDelete)="deletePost($event)"></app-post>
+    }
+  </div>
+</div>

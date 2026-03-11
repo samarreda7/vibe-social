@@ -7,10 +7,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommentPostComponent } from './comment-post/comment-post.component';
 import { RouterLink } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DatePipe } from '@angular/common';
+import { PostComponent } from "./post/post.component";
 
 @Component({
   selector: 'app-feed-content',
-  imports: [ReactiveFormsModule, CommentPostComponent, RouterLink],
+  imports: [ReactiveFormsModule, CommentPostComponent, RouterLink, DatePipe, PostComponent],
   templateUrl: './feed-content.component.html',
   styleUrl: './feed-content.component.css',
 })
@@ -28,6 +30,7 @@ export class FeedContentComponent implements OnInit {
   imgUrl: string | ArrayBuffer | null | undefined | SafeUrl;
 
   ngOnInit(): void {
+    
     this.getAllPosts();
     this.userId = JSON.parse(localStorage.getItem('socialUser')!)?._id;
     this.name = JSON.parse(localStorage.getItem('socialUser')!)?.name;
@@ -79,31 +82,17 @@ export class FeedContentComponent implements OnInit {
       },
     });
   }
-  deletePost(postId: string): void {
-    this.postsService.deletePosts(postId).subscribe({
-      next: (res) => {
-        console.log(res);
-        if (res.success) {
-          this.getAllPosts();
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-  LikeUnlikePost(postId: string): void {
-    this.postsService.LikeUnlikePost(postId).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.getAllPosts();
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
+  LikeUnlikePost(postId: string) {
+  this.postsService.LikeUnlikePost(postId).subscribe({
+    next: () => this.getAllPosts()
+  });
+}
+
+deletePost(postId: string) {
+  this.postsService.deletePosts(postId).subscribe({
+    next: (res) => { if (res.success) this.getAllPosts(); }
+  });
+}
   isLikedByMe(post: Post): boolean {
     return post.likes?.some((id: string) => id === this.userId) ?? false;
   }

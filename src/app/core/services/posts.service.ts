@@ -7,10 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class PostsService {
   private readonly httpClient = inject(HttpClient);
+
   getAllPosts(): Observable<any> {
     return this.httpClient.get(`https://route-posts.routemisr.com/posts`);
   }
-  getSinglePost(postId:string): Observable<any> {
+  getUserPosts(userId: string): Observable<any> {
+    return this.httpClient.get(`https://route-posts.routemisr.com/users/${userId}/posts`);
+  }
+  getSinglePost(postId: string): Observable<any> {
     return this.httpClient.get(`https://route-posts.routemisr.com/posts/${postId}`);
   }
   createPosts(data: object): Observable<any> {
@@ -20,14 +24,11 @@ export class PostsService {
     return this.httpClient.delete(`https://route-posts.routemisr.com/posts/${postId}`);
   }
   LikeUnlikePost(postId: string): Observable<any> {
-    return this.httpClient.put(
-      `https://route-posts.routemisr.com/posts/${postId}/like`,null,
-     
-    );
+    return this.httpClient.put(`https://route-posts.routemisr.com/posts/${postId}/like`, null);
   }
   getpostLike(postId: string): Observable<any> {
     return this.httpClient.get(
-      `https://route-posts.routemisr.com/posts/${postId}/likes?page=1&limit=20`
+      `https://route-posts.routemisr.com/posts/${postId}/likes?page=1&limit=20`,
     );
   }
 }

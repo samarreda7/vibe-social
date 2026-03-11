@@ -4,10 +4,12 @@ import { CommentsService } from './comments.service';
 import { Comment } from './comment.interface';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-comment-post',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule , DatePipe],
   templateUrl: './comment-post.component.html',
   styleUrl: './comment-post.component.css',
 })
@@ -24,6 +26,7 @@ export class CommentPostComponent implements OnInit {
   @Input() PostId: string = '';
   ngOnInit(): void {
     this.getAllComment();
+     initFlowbite();
     this.userId = JSON.parse(localStorage.getItem('socialUser')!)?._id;
     this.photo = JSON.parse(localStorage.getItem('socialUser')!)?.photo;
   }
@@ -86,4 +89,17 @@ export class CommentPostComponent implements OnInit {
   isLikedByMe(comment: Comment): boolean {
     return comment.likes?.some((id: string) => id === this.userId) ?? false;
   }
+  openMenuId: string | null = null;
+
+toggleMenu(id: string): void {
+  if (this.openMenuId === id) {
+    this.openMenuId = null;
+  } else {
+    this.openMenuId = id;
+  }
+}
+
+closeMenu(): void {
+  this.openMenuId = null;
+}
 }
