@@ -23,8 +23,11 @@ export class PostsService {
   deletePosts(postId: string): Observable<any> {
     return this.httpClient.delete(`https://route-posts.routemisr.com/posts/${postId}`);
   }
-  LikeUnlikePost(postId: string): Observable<any> {
+  LikeUnlikePost(postId: string): Observable<any> { 
     return this.httpClient.put(`https://route-posts.routemisr.com/posts/${postId}/like`, null);
+  }
+  savedUnsavePost(postId: string): Observable<any> {
+    return this.httpClient.put(`https://route-posts.routemisr.com/posts/${postId}/bookmark`, null);
   }
   getpostLike(postId: string): Observable<any> {
     return this.httpClient.get(

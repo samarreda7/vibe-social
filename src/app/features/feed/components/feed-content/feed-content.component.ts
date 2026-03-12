@@ -39,7 +39,7 @@ export class FeedContentComponent implements OnInit {
   getAllPosts(): void {
     this.postsService.getAllPosts().subscribe({
       next: (res) => {
-        // console.log(res.data.posts);
+        console.log(res.data.posts);
         this.postsList = res.data.posts;
         this.cdr.detectChanges();
       },
@@ -84,6 +84,11 @@ export class FeedContentComponent implements OnInit {
   }
   LikeUnlikePost(postId: string) {
   this.postsService.LikeUnlikePost(postId).subscribe({
+    next: () => this.getAllPosts()
+  });
+}
+  SaveUnsavePost(postId: string) {
+  this.postsService.savedUnsavePost(postId).subscribe({
     next: () => this.getAllPosts()
   });
 }

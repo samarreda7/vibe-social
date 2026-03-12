@@ -45,8 +45,12 @@
                     <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownMenuIconButton">
                         <li>
                             <button
-                                class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
-                                Save Post
+                            (click)="SaveUnsavePost(post._id)"
+                                class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded flex-row content-between items-center gap-x-12">
+                                <span>Save Post</span>
+                                @if(post.bookmarked){
+                                  <i class="fa-solid fa-bookmark text-green-800"></i>
+                                }
                             </button>
                             @if(userId == post.user._id){
                             <button

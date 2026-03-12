@@ -1,46 +1,27 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { ProfileService } from './profile.service';
-import { Profile } from './profile.interface';
-import { PostsService } from '../../core/services/posts.service';
-import { Observable } from 'rxjs';
-import { Post } from '../../core/models/post.interface';
-import { CommentPostComponent } from '../feed/components/feed-content/comment-post/comment-post.component';
-import { RouterLink } from '@angular/router';
-import { DatePipe } from '@angular/common';
-import { PostComponent } from '../feed/components/feed-content/post/post.component';
+import { ProfileService } from '../../../profile/profile.service';
+import { PostsService } from '../../../../core/services/posts.service';
+import { Post } from '../../../../core/models/post.interface';
+import { PostComponent } from '../feed-content/post/post.component';
 
 @Component({
-  selector: 'app-profile',
-  imports: [CommentPostComponent, RouterLink, DatePipe, PostComponent],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css',
+  selector: 'app-my-posts',
+  imports: [PostComponent],
+  templateUrl: './my-posts.component.html',
+  styleUrl: './my-posts.component.css',
 })
-export class ProfileComponent implements OnInit {
+export class MyPostsComponent implements OnInit {
   private readonly profileService = inject(ProfileService);
   private readonly postsService = inject(PostsService);
   private readonly cdr = inject(ChangeDetectorRef);
   userId: string = '';
   postsList: Post[] = [];
-  profileData: Profile | null = null;
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('socialUser')!)?._id;
-    this.getProfile(this.userId);
     this.getUserPosts(this.userId);
   }
 
-  getProfile(userId: string) {
-    this.profileService.getUserProfile().subscribe({
-      next: (res) => {
-        console.log(res.data.user);
-        this.profileData = res.data.user;
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
   getUserPosts(userId: string) {
     this.postsService.getUserPosts(this.userId).subscribe({
       next: (res) => {
@@ -61,10 +42,16 @@ export class ProfileComponent implements OnInit {
   }
   SaveUnsavePost(postId: string) {
     this.postsService.savedUnsavePost(postId).subscribe({
-      next: () => this.getUserPosts(this.userId),
+      next: (res) => {
+        this.getUserPosts(this.userId);
+        console.log(res);
+        this.cdr.detectChanges();
+      },
+      error:(err)=>{
+        console.log(err);
+      }
     });
   }
-
   deletePost(postId: string) {
     this.postsService.deletePosts(postId).subscribe({
       next: (res) => {
