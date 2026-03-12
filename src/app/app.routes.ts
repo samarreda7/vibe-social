@@ -14,6 +14,7 @@ import { guestGuard } from './core/auth/guards/guest-guard';
 import { DetailsComponent } from './features/details/details.component';
 import { FeedContentComponent } from './features/feed/components/feed-content/feed-content.component';
 import { MyPostsComponent } from './features/feed/components/my-posts/my-posts.component';
+import { SavedPostsComponent } from './features/feed/components/saved-posts/saved-posts.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -38,10 +39,19 @@ export const routes: Routes = [
         children: [
           { path: '', redirectTo: 'content', pathMatch: 'full' },
           { path: 'content', component: FeedContentComponent },
-          { path: 'myPosts', component: MyPostsComponent },
+          { path: 'myposts', component: MyPostsComponent },
+          { path: 'Saved', component: SavedPostsComponent },
         ],
       },
-      { path: 'profile', component: ProfileComponent },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        children: [
+          { path: '', redirectTo: 'myposts', pathMatch: 'full' },
+          { path: 'myposts', component: MyPostsComponent },
+          { path: 'Saved', component: SavedPostsComponent },
+        ],
+      },
       { path: 'notification', component: NotificationComponent },
       { path: 'change', component: ChangepasswordComponent },
       { path: 'details/:id', component: DetailsComponent },

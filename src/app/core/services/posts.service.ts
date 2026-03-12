@@ -11,6 +11,9 @@ export class PostsService {
   getAllPosts(): Observable<any> {
     return this.httpClient.get(`https://route-posts.routemisr.com/posts`);
   }
+  GETBookMarks(): Observable<any> {
+    return this.httpClient.get(`https://route-posts.routemisr.com/users/bookmarks`);
+  }
   getUserPosts(userId: string): Observable<any> {
     return this.httpClient.get(`https://route-posts.routemisr.com/users/${userId}/posts`);
   }

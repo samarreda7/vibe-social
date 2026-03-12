@@ -5,13 +5,22 @@ import { PostsService } from '../../core/services/posts.service';
 import { Observable } from 'rxjs';
 import { Post } from '../../core/models/post.interface';
 import { CommentPostComponent } from '../feed/components/feed-content/comment-post/comment-post.component';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { PostComponent } from '../feed/components/feed-content/post/post.component';
+import { MyPostsComponent } from '../feed/components/my-posts/my-posts.component';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommentPostComponent, RouterLink, DatePipe, PostComponent],
+  imports: [
+    CommentPostComponent,
+    RouterLink,
+    DatePipe,
+    PostComponent,
+    RouterOutlet,
+    MyPostsComponent,
+    RouterLinkActive,
+  ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
@@ -64,7 +73,6 @@ export class ProfileComponent implements OnInit {
       next: () => this.getUserPosts(this.userId),
     });
   }
-
   deletePost(postId: string) {
     this.postsService.deletePosts(postId).subscribe({
       next: (res) => {
