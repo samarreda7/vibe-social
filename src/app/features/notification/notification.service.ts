@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class NotificationService {
   private readonly httpClient = inject(HttpClient);
 
-  getAllNotifaction():Observable<any>{
-    return this.httpClient.get(`https://route-posts.routemisr.com/notifications?unread=false&page=1&limit=10`)
+  getAllNotifaction(): Observable<any> {
+    return this.httpClient.get(`https://route-posts.routemisr.com/notifications?page=1&limit=10`);
   }
 }
