@@ -1,0 +1,14 @@
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class NotificationService {
+  private readonly httpClient = inject(HttpClient);
+
+  getAllNotifaction():Observable<any>{
+    return this.httpClient.get(`https://route-posts.routemisr.com/notifications?unread=false&page=1&limit=10`)
+  }
+}

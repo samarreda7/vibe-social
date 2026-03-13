@@ -12,7 +12,7 @@
                 <div class="flex items-center text-[13px] text-slate-500 mt-0.5 gap-1">
                     <span class="hover:underline cursor-pointer">@{{post.user.username}}</span>
                     <span>&middot;</span>
-                    <span class="hover:underline cursor-pointer">{{post.createdAt | date:'medium'}}</span>
+                    <span class="hover:underline cursor-pointer">{{post.createdAt | timeago}}</span>
                     <span>&middot;</span>
 
                     <div
@@ -27,8 +27,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="relative">
+        <div class="relative flex items-center">
+            @if(post.bookmarked){
+            <span class="bg-gradient-to-r from-blue-900 to-purple-800 bg-clip-text text-transparent"><i
+                    class="fa-solid fa-bookmark "></i>  <span class="hidden sm:inline">saved</span> </span>
+            }
             <button id="dropdownMenuIconButton-{{post._id}}" [attr.data-dropdown-toggle]="'dropdownDots-' + post._id"
                 data-dropdown-placement="bottom-end"
                 class="text-heading bg-neutral-primary box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-base text-sm p-2 focus:outline-none"
@@ -44,14 +47,11 @@
                 <ul class="p-2 text-sm text-body font-medium"
                     [attr.aria-labelledby]="'dropdownMenuIconButton-' + post._id">
                     <li>
-                        <button
-                         (click)="SaveUnsavePost(post._id)"
-                         (touchend)="SaveUnsavePost(post._id); $event.preventDefault()"
+                        <button (click)="SaveUnsavePost(post._id)"
+                            (touchend)="SaveUnsavePost(post._id); $event.preventDefault()"
                             class="inline-flex items-center justify-between w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
                             <span>Save Post</span>
-                            @if(post.bookmarked){
-                            <i class="fa-solid fa-bookmark text-green-800"></i>
-                            }
+
                         </button>
                     </li>
                     @if(userId == post.user._id){

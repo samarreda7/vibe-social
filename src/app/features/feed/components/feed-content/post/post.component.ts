@@ -13,10 +13,11 @@ import { PostsService } from '../../../../../core/services/posts.service';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { initFlowbite } from 'flowbite';
+import { TimeagoPipe } from '../../../../../shared/pipes/timeago-pipe';
 
 @Component({
   selector: 'app-post',
-  imports: [CommentPostComponent, RouterLink, DatePipe],
+  imports: [CommentPostComponent, RouterLink, DatePipe ,TimeagoPipe],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css',
 })
