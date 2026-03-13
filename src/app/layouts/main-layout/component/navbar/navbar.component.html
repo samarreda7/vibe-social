@@ -1,95 +1,76 @@
 <nav class="bg-gradient-to-br from-blue-950 to-purple-950 border-b border-purple-400 w-full z-20 top-0 start-0">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-3">
+  <div class="max-w-screen-xl flex items-center justify-between mx-auto px-6 py-3">
 
     <!-- Logo -->
-    <a class="flex items-center space-x-2 rtl:space-x-reverse">
+    <a class="flex items-center space-x-2 rtl:space-x-reverse shrink-0">
       <div class="text-white font-extrabold text-2xl">
         <i class="fa-brands fa-vimeo-v"></i> Vibe
       </div>
     </a>
 
-    <!-- Right Side: Avatar + Hamburger -->
-    <div class="flex md:order-2 items-center gap-3">
+    <!-- Nav Links - always centered -->
+    <ul class="flex flex-row items-center gap-1">
+      <li>
+        <a routerLink="feed" routerLinkActive="active"
+          class="flex items-center justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
+          <i class="fa-regular fa-house text-xl"></i>
+        </a>
+      </li>
+      <li>
+        <a routerLink="profile" routerLinkActive="active"
+          class="flex items-center justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
+          <i class="fa-regular fa-circle-user text-xl"></i>
+        </a>
+      </li>
+      <li>
+        <a routerLink="notification" routerLinkActive="active"
+          class="flex items-center justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
+          <i class="fa-regular fa-bell text-xl"></i>
+        </a>
+      </li>
+    </ul>
 
-      <div class="flex items-center">
-
-        <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" data-dropdown-delay="500"
-          class="inline-flex items-center justify-center text-white shadow-xs font-medium leading-5 text-sm cursor-pointer focus:outline-none"
-          type="button">
-          <img [src]="photo"
-            class="w-8 h-8 rounded-full object-cover bg-white/80" alt="profile" />
-        </button>
-
-        <!-- Dropdown menu -->
-        <div id="dropdownDivider"
-          class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
-          <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownDividerButton">
-            <li>
-              <a routerLink="" class="flex items-center gap-2 py-2 px-3 text-dark rounded transition-colors">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                    d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4" />
-                </svg>
-                User name
-              </a>
-            </li>
-            <li>
-              <a routerLink="" class="flex items-center gap-2 py-2 px-3 text-dark rounded transition-colors">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                    d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4" />
-                </svg>
-                Settings
-              </a>
-            </li>
-            <li>
-              <a (click)="logout()" routerLink="" class="flex items-center gap-2 py-2 px-3 text-red-400 rounded transition-colors">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2" />
-                </svg>
-                Sign out
-              </a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-      <!-- Hamburger toggle -->
-      <button (click)="menuOpen = !menuOpen" type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-white rounded-lg md:hidden hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-400"
-        aria-controls="navbar-vibe" aria-expanded="false">
-        <span class="sr-only">Open main menu</span>
-        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
-        </svg>
+    <!-- Right Side: Avatar + Dropdown -->
+    <div class="flex items-center shrink-0">
+      <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" data-dropdown-delay="500"
+        class="inline-flex items-center justify-center text-white font-medium text-sm cursor-pointer focus:outline-none"
+        type="button">
+        <img [src]="photo" class="w-8 h-8 rounded-full object-cover bg-white/80" alt="profile" />
       </button>
-    </div>
 
-    <!-- Nav Links -->
-    <div [ngClass]="{'hidden': !menuOpen, 'flex': menuOpen}"
-      class="items-center justify-between w-full md:flex md:w-auto md:order-1" id="navbar-vibe">
-      <ul
-        class="flex flex-col md:items-center p-4 md:p-0 mt-4 font-semibold md:flex-row md:space-x-1 rtl:space-x-reverse md:mt-0 md:border-0 w-full">
-        <li>
-          <a routerLink="feed" routerLinkActive="active"
-            class="flex items-center gap-2 py-2 px-3 text-white rounded md:w-auto w-full  transition-colors">
-            <i class="fa-regular fa-house"></i> Feed
-          </a>
-        </li>
-        <li>
-          <a routerLink="profile" routerLinkActive="active"
-            class="flex items-center gap-2 py-2 px-3 text-white rounded md:w-auto w-full transition-colors">
-            <i class="fa-regular fa-circle-user"></i> Profile
-          </a>
-        </li>
-        <li>
-          <a routerLink="notification" routerLinkActive="active"
-            class="flex items-center gap-2 py-2 px-3 text-white rounded md:w-auto w-full transition-colors ">
-            <i class="fa-regular fa-bell"></i> Notification
-          </a>
-        </li>
-      </ul>
+      <!-- Dropdown menu -->
+      <div id="dropdownDivider"
+        class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
+        <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownDividerButton">
+          <li>
+            <a routerLink="" class="flex items-center gap-2 py-2 px-3 text-dark rounded transition-colors">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                  d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4" />
+              </svg>
+              User name
+            </a>
+          </li>
+          <li>
+            <a routerLink="" class="flex items-center gap-2 py-2 px-3 text-dark rounded transition-colors">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                  d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4" />
+              </svg>
+              Settings
+            </a>
+          </li>
+          <li>
+            <a (click)="logout()" routerLink="" class="flex items-center gap-2 py-2 px-3 text-red-400 rounded transition-colors">
+              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2" />
+              </svg>
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
   </div>
