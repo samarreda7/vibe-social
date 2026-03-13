@@ -24,6 +24,7 @@ export class SavedPostsComponent implements OnInit {
       next: (res) => {
         console.log(res.data.bookmarks);
         this.postsList = res.data.bookmarks;
+        this.postsService.listLength$.next(this.postsList.length);
         this.cdr.detectChanges();
       },
       error: (err) => {

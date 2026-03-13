@@ -1,0 +1,44 @@
+ @for (notf of notificationList; track $index) {
+  <div class="flex items-start gap-4 bg-white border border-gray-100 rounded-2xl px-5 py-4 shadow-sm relative">
+
+    <span class="absolute text-slate-700 text-xs top-4  right-8 w-2.5 h-2.5 ">{{notf.createdAt | timeago }}</span>
+
+    <div class="relative shrink-0">
+      <img [src]="notf.actor.photo" class="w-12 h-12 rounded-full object-cover" />
+      <!-- like → bg-red-500 ❤  |  share → bg-blue-500 ↩  |  comment → bg-emerald-500 💬 -->
+      <span class="absolute -bottom-3 -right-2 w-5 h-5  rounded-full flex items-center justify-center  text-[10px] ">
+        @if(notf.type === "like_post"){
+        <span class="text-red-600"> <i class="fa-solid fa-heart"></i></span>
+        }
+        @else if(notf.type === "share_post"){
+        <span class="text-green-500"> <i class="fa-solid fa-retweet"></i></span>
+        }
+        @else if(notf.type === "comment_post"){
+        <span class="text-blue-500"> <i class="fa-regular fa-comment-dots"></i></span>
+        }
+      </span>
+    </div>
+
+    <!-- text -->
+    <div class="flex-1 min-w-0">
+      <p class="text-sm text-gray-800">
+        <span class="font-semibold">{{notf.actor.name}}</span>
+        @if(notf.type === "like_post"){
+        <span class="text-gray-500"> liked your post</span>
+        }
+        @else if(notf.type === "share_post"){
+        <span class="text-gray-500"> shared your post</span>
+        }
+        @else if(notf.type === "comment_post"){
+        <span class="text-gray-500"> commented on your post</span>
+        }
+      </p>
+      <p class="text-sm text-gray-400 mt-0.5 truncate">{{notf.entity.body}}</p>
+      @if(notf.isRead){
+      <p class="text-sm text-green-700 mt-0.5 truncate text-xs"><i class="fa-solid fa-check-double"></i>Read</p>
+
+      }
+      <p class="text-xs text-gray-300 mt-1.5">15h</p>
+    </div>
+  </div>
+  }

@@ -17,7 +17,7 @@ import { TimeagoPipe } from '../../../../../shared/pipes/timeago-pipe';
 
 @Component({
   selector: 'app-post',
-  imports: [CommentPostComponent, RouterLink, DatePipe ,TimeagoPipe],
+  imports: [CommentPostComponent, RouterLink, DatePipe, TimeagoPipe],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css',
 })
@@ -25,7 +25,10 @@ export class PostComponent implements OnInit {
   @Input() post!: Post;
   private readonly postsService = inject(PostsService);
   private readonly cdr = inject(ChangeDetectorRef);
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+  
+  }
   ngAfterViewInit() {
     initFlowbite();
   }

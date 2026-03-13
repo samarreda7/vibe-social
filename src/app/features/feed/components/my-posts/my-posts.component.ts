@@ -27,6 +27,7 @@ export class MyPostsComponent implements OnInit {
       next: (res) => {
         console.log(res.data.posts);
         this.postsList = res.data.posts;
+        this.postsService.listLength$.next(this.postsList.length);
         this.cdr.detectChanges();
       },
     });
@@ -47,9 +48,9 @@ export class MyPostsComponent implements OnInit {
         console.log(res);
         this.cdr.detectChanges();
       },
-      error:(err)=>{
+      error: (err) => {
         console.log(err);
-      }
+      },
     });
   }
   deletePost(postId: string) {

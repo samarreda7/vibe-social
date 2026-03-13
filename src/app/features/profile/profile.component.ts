@@ -31,11 +31,16 @@ export class ProfileComponent implements OnInit {
   userId: string = '';
   postsList: Post[] = [];
   profileData: Profile | null = null;
+  listLength: number = 0;
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('socialUser')!)?._id;
     this.getProfile(this.userId);
     this.getUserPosts(this.userId);
+    this.postsService.listLength$.subscribe((len) => {
+      this.listLength = len;
+      this.cdr.detectChanges();
+    });
   }
 
   getProfile(userId: string) {

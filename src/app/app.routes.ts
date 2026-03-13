@@ -15,6 +15,8 @@ import { DetailsComponent } from './features/details/details.component';
 import { FeedContentComponent } from './features/feed/components/feed-content/feed-content.component';
 import { MyPostsComponent } from './features/feed/components/my-posts/my-posts.component';
 import { SavedPostsComponent } from './features/feed/components/saved-posts/saved-posts.component';
+import { AllnotificationComponent } from './features/notification/components/allnotification/allnotification.component';
+import { UnreadNotificationComponent } from './features/notification/components/unread-notification/unread-notification.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -52,7 +54,11 @@ export const routes: Routes = [
           { path: 'Saved', component: SavedPostsComponent },
         ],
       },
-      { path: 'notification', component: NotificationComponent },
+      { path: 'notification', component: NotificationComponent ,children:[
+        { path: '', redirectTo: 'AllNotification', pathMatch: 'full' },
+        {path:"AllNotification",component:AllnotificationComponent},
+        {path:"unreadNotification",component:UnreadNotificationComponent},
+      ]},
       { path: 'change', component: ChangepasswordComponent },
       { path: 'details/:id', component: DetailsComponent },
     ],
