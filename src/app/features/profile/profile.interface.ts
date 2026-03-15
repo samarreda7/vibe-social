@@ -7,6 +7,7 @@ export interface Profile {
   gender: 'male' | 'female';
   photo: string;
   cover: string;
+  bookmarks: string[];      
   followers: string[];
   following: string[];
   createdAt: string;

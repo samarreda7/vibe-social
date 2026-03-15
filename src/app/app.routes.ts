@@ -54,11 +54,23 @@ export const routes: Routes = [
           { path: 'Saved', component: SavedPostsComponent },
         ],
       },
-      { path: 'notification', component: NotificationComponent ,children:[
-        { path: '', redirectTo: 'AllNotification', pathMatch: 'full' },
-        {path:"AllNotification",component:AllnotificationComponent},
-        {path:"unreadNotification",component:UnreadNotificationComponent},
-      ]},
+      {
+        path: 'profile/:id', 
+        component: ProfileComponent,
+        children: [
+          { path: '', redirectTo: 'myposts', pathMatch: 'full' },
+          { path: '', component: MyPostsComponent },
+        ],
+      },
+      {
+        path: 'notification',
+        component: NotificationComponent,
+        children: [
+          { path: '', redirectTo: 'AllNotification', pathMatch: 'full' },
+          { path: 'AllNotification', component: AllnotificationComponent },
+          { path: 'unreadNotification', component: UnreadNotificationComponent },
+        ],
+      },
       { path: 'change', component: ChangepasswordComponent },
       { path: 'details/:id', component: DetailsComponent },
     ],

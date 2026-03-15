@@ -1,16 +1,17 @@
 <div class="bg-white rounded-[16px] my-3 shadow-sm border border-slate-200 p-4 font-sans">
-    <!-- user details  -->
+    
     <div class="flex items-start justify-between mb-3">
         <div class="flex items-center gap-3">
-            <img [src]="post.user.photo" [alt]="post.user.username"
-                class="size-10 rounded-full object-cover shrink-0 bg-slate-100 border border-slate-50" />
+            <img [src]="post.user.photo" [alt]="post.user.username" [routerLink]="['/profile',post.user._id]" 
+                class="cursor-pointer size-10 rounded-full object-cover shrink-0 bg-slate-100 border border-slate-50" />
 
             <div>
-                <span class="text-[15px] font-bold text-slate-900 leading-tight hover:underline cursor-pointer">
+                <span [routerLink]="['/profile',post.user._id]" 
+                 class="text-[15px] font-bold text-slate-900 leading-tight hover:underline cursor-pointer">
                     {{post.user.name}}
                 </span>
                 <div class="flex items-center text-[13px] text-slate-500 mt-0.5 gap-1">
-                    <span class="hover:underline cursor-pointer">@{{post.user.username}}</span>
+                    <span [routerLink]="['/profile',post.user._id]"  class="hover:underline cursor-pointer">@{{post.user.username}}</span>
                     <span>&middot;</span>
                     <span class="hover:underline cursor-pointer">{{post.createdAt | timeago}}</span>
                     <span>&middot;</span>
@@ -73,9 +74,9 @@
         </div>
     </div>
 
-    <div [routerLink]="['/details',post._id]" class="cursor-pointer text-[15px] text-slate-900 mb-4">
+    <div [routerLink]="['/details',post._id]" class="cursor-pointer text-[15px] text-slate-900 mb-4 over">
         @if(post.body){
-        <p>{{post.body}}</p>
+        <p class="break-words">{{post.body}}</p>
         }
         @if(post.image){
         <img [src]="post.image" class="w-full max-h-90 object-cover rounded shadow mt-2" alt="" />

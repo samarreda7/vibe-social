@@ -26,7 +26,7 @@ export class PostsService {
   deletePosts(postId: string): Observable<any> {
     return this.httpClient.delete(`https://route-posts.routemisr.com/posts/${postId}`);
   }
-  LikeUnlikePost(postId: string): Observable<any> { 
+  LikeUnlikePost(postId: string): Observable<any> {
     return this.httpClient.put(`https://route-posts.routemisr.com/posts/${postId}/like`, null);
   }
   savedUnsavePost(postId: string): Observable<any> {
@@ -37,5 +37,7 @@ export class PostsService {
       `https://route-posts.routemisr.com/posts/${postId}/likes?page=1&limit=20`,
     );
   }
-   listLength$ = new BehaviorSubject<number>(0);
+  listLength$ = new BehaviorSubject<number>(0);
+  MypostslistLength$ = new BehaviorSubject<number>(0);
+  viewedUserId$ = new BehaviorSubject<string>('');
 }

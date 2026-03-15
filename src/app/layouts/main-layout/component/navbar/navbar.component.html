@@ -1,36 +1,33 @@
 <nav class="bg-gradient-to-br from-blue-950 to-purple-950 border-b border-purple-400 w-full z-20 top-0 start-0">
   <div class="max-w-screen-xl flex items-center justify-between mx-auto px-6 py-3">
 
-    <!-- Logo -->
     <a class="flex items-center space-x-2 rtl:space-x-reverse shrink-0">
       <div class="text-white font-extrabold text-2xl">
         <i class="fa-brands fa-vimeo-v"></i> Vibe
       </div>
     </a>
 
-    <!-- Nav Links - always centered -->
     <ul class="flex flex-row items-center gap-1">
       <li>
         <a routerLink="feed" routerLinkActive="active"
-          class="flex items-center justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
-          <i class="fa-regular fa-house text-xl"></i>
+          class=" text-lg flex items-center gap-1 justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
+          <i class="fa-regular fa-house "></i> <span class="md:inline-block hidden">Feed</span>
         </a>
       </li>
       <li>
         <a routerLink="profile" routerLinkActive="active"
-          class="flex items-center justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
-          <i class="fa-regular fa-circle-user text-xl"></i>
+          class=" text-lg flex items-center gap-1 justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
+          <i class="fa-regular fa-user"></i> <span class="md:inline-block hidden">Profile</span>
         </a>
       </li>
       <li>
         <a routerLink="notification" routerLinkActive="active"
-          class="flex items-center justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
-          <i class="fa-regular fa-bell text-xl"></i>
+          class="text-lg flex items-center gap-1 justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
+          <i class="fa-regular fa-bell "></i> <span class="md:inline-block hidden">Notification</span>
         </a>
       </li>
     </ul>
 
-    <!-- Right Side: Avatar + Dropdown -->
     <div class="flex items-center shrink-0">
       <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" data-dropdown-delay="500"
         class="inline-flex items-center justify-center text-white font-medium text-sm cursor-pointer focus:outline-none"
@@ -38,7 +35,7 @@
         <img [src]="photo" class="w-8 h-8 rounded-full object-cover bg-white/80" alt="profile" />
       </button>
 
-      <!-- Dropdown menu -->
+     
       <div id="dropdownDivider"
         class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
         <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownDividerButton">

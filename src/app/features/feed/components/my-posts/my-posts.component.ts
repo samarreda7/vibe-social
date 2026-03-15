@@ -19,15 +19,20 @@ export class MyPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('socialUser')!)?._id;
-    this.getUserPosts(this.userId);
+     this.postsService.viewedUserId$.subscribe((id) => {
+    const targetId = id || this.userId; 
+    this.getUserPosts(targetId);
+    this.cdr.detectChanges();
+  });
   }
 
   getUserPosts(userId: string) {
-    this.postsService.getUserPosts(this.userId).subscribe({
+    this.postsService.getUserPosts(userId).subscribe({
       next: (res) => {
         console.log(res.data.posts);
         this.postsList = res.data.posts;
         this.postsService.listLength$.next(this.postsList.length);
+        this.postsService.MypostslistLength$.next(this.postsList.length);
         this.cdr.detectChanges();
       },
     });
