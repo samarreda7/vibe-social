@@ -15,13 +15,15 @@ export class MyPostsComponent implements OnInit {
   private readonly postsService = inject(PostsService);
   private readonly cdr = inject(ChangeDetectorRef);
   userId: string = '';
+  viewedUserId: string = '';
   postsList: Post[] = [];
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('socialUser')!)?._id;
      this.postsService.viewedUserId$.subscribe((id) => {
     const targetId = id || this.userId; 
-    this.getUserPosts(targetId);
+    this.viewedUserId = targetId; 
+    this.getUserPosts(this.viewedUserId);
     this.cdr.detectChanges();
   });
   }
@@ -43,13 +45,13 @@ export class MyPostsComponent implements OnInit {
   }
   LikeUnlikePost(postId: string) {
     this.postsService.LikeUnlikePost(postId).subscribe({
-      next: () => this.getUserPosts(this.userId),
+      next: () => this.getUserPosts(this.viewedUserId),
     });
   }
   SaveUnsavePost(postId: string) {
     this.postsService.savedUnsavePost(postId).subscribe({
       next: (res) => {
-        this.getUserPosts(this.userId);
+        this.getUserPosts(this.viewedUserId);
         console.log(res);
         this.cdr.detectChanges();
       },
@@ -61,7 +63,7 @@ export class MyPostsComponent implements OnInit {
   deletePost(postId: string) {
     this.postsService.deletePosts(postId).subscribe({
       next: (res) => {
-        if (res.success) this.getUserPosts(this.userId);
+        if (res.success) this.getUserPosts(this.viewedUserId);
       },
     });
   }

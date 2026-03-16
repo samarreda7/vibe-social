@@ -22,4 +22,13 @@ export class NotificationComponent implements OnInit {
       this.cdr.detectChanges();
     });
   }
+  markAllIRead() {
+    this.notificationService.markAllNotificationRead().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.notificationService.refreshNotifications$.next();
+        this.notificationService.refreshNotificationsCount$.next();
+      },
+    });
+  }
 }

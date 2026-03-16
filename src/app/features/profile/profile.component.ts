@@ -40,7 +40,6 @@ export class ProfileComponent implements OnInit {
     this.userId = JSON.parse(localStorage.getItem('socialUser')!)?._id;
     this.activatedRoute.paramMap.subscribe((param) => {
       const idFromRoute = param.get('id');
-
       if (idFromRoute) {
         this.postsService.viewedUserId$.next(idFromRoute);
         this.getUserProfile(idFromRoute);
@@ -112,7 +111,7 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.followUnfollowUser(userId).subscribe({
       next: (res) => {
-        this.isFollowing(this.profileData,userId);
+        this.getUserProfile(userId);
         this.cdr.detectChanges();
       },
     });

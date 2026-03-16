@@ -1,7 +1,8 @@
 import { NgClass, NgIf } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { initFlowbite } from 'flowbite';
+import { NotificationService } from '../../../../features/notification/notification.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,16 +12,35 @@ import { initFlowbite } from 'flowbite';
 })
 export class NavbarComponent implements OnInit {
   private readonly router = inject(Router);
+  private readonly notificationService = inject(NotificationService);
+  private readonly cdr = inject(ChangeDetectorRef);
   photo: string = '';
+  unreadCount: number = 0;
 
   menuOpen = false;
   ngOnInit(): void {
     this.photo = JSON.parse(localStorage.getItem('socialUser')!)?.photo;
     initFlowbite();
+       this.notificationService.refreshNotifications$.subscribe(() => {
+      this.getUnreadCount(); 
+    });
+    this.getUnreadCount();
+
   }
   logout(): void {
     localStorage.removeItem('socialToken');
     localStorage.removeItem('socialUser');
     this.router.navigate(['/login']);
+  }
+  getUnreadCount() {
+    this.notificationService.getUnreadcount().subscribe({
+      next: (res) => {
+        this.unreadCount = res.data.unreadCount;
+      this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

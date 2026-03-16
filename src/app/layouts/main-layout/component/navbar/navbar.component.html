@@ -20,12 +20,26 @@
           <i class="fa-regular fa-user"></i> <span class="md:inline-block hidden">Profile</span>
         </a>
       </li>
-      <li>
-        <a routerLink="notification" routerLinkActive="active"
-          class="text-lg flex items-center gap-1 justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
-          <i class="fa-regular fa-bell "></i> <span class="md:inline-block hidden">Notification</span>
-        </a>
-      </li>
+ <li>
+  <a routerLink="notification" routerLinkActive="active"
+    class="text-lg flex items-center gap-1 justify-center py-2 px-4 text-white rounded-xl transition-all duration-200 hover:bg-white/10">
+    
+    <span class="relative inline-flex items-center justify-center">
+      <i class="fa-regular fa-bell"></i>
+      <span class="absolute -top-2 -left-2.5
+                   min-w-[18px] h-[18px] px-1
+                   bg-red-500 text-white
+                   text-[10px] font-semibold leading-none
+                   rounded-full flex items-center justify-center
+                   ring-2 ring-white/20
+                   animate-pulse">
+                   {{unreadCount}}
+      </span>
+    </span>
+
+    <span class="md:inline-block hidden">Notification</span>
+  </a>
+</li>
     </ul>
 
     <div class="flex items-center shrink-0">
