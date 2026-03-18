@@ -1,0 +1,64 @@
+<!-- Backdrop -->
+<div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+
+  <!-- Modal -->
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6">
+
+    <!-- Header -->
+    <h2 class="text-lg font-bold text-slate-800">Adjust profile photo</h2>
+    <p class="text-sm text-slate-400 mt-1 mb-4">Drag to reposition and use zoom for perfect framing.</p>
+
+    <!-- Cropper -->
+    <div class="flex justify-center mb-4">
+      <image-cropper
+        [imageFile]="imageFile"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="1" 
+        [roundCropper]="true"
+        [transform]="transform"
+        format="jpeg"
+        (imageCropped)="imageCropped($event)"
+        class="max-h-72"
+      />
+    </div>
+
+    <!-- Zoom -->
+    <div class="flex items-center justify-between mb-1">
+      <span class="text-sm text-slate-500 font-medium">Zoom</span>
+      <span class="text-sm text-slate-400">{{ scale.toFixed(2) }}x</span>
+    </div>
+    <input
+      type="range"
+      min="1" max="3" step="0.01"
+      [(ngModel)]="scale"
+      (ngModelChange)="onZoomChange()"
+      class="w-full accent-blue-600 mb-4"
+    />
+
+    <!-- Privacy -->
+    <label class="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-2">Post Privacy</label>
+    <select
+      [(ngModel)]="privacy"
+      class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-300">
+      <option value="public">Public</option>
+      <option value="friends">Friends</option>
+      <option value="private">Private</option>
+    </select>
+
+    <!-- Actions -->
+    <div class="flex justify-end gap-3">
+      <button
+        (click)="onClose.emit()"
+        class="px-5 py-2 rounded-lg border border-slate-200 text-sm font-medium text-slate-600 hover:bg-slate-50 transition">
+        Cancel
+      </button>
+      <button
+        (click)="savePhoto()"
+        [disabled]="loading"
+        class="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition disabled:opacity-50">
+        {{ loading ? 'Saving...' : 'Save photo' }}
+      </button>
+    </div>
+
+  </div>
+</div>

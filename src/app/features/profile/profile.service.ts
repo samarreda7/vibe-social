@@ -6,17 +6,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProfileService {
-
   userId = JSON.parse(localStorage.getItem('socialUser')!)?._id;
 
   private readonly httpClient = inject(HttpClient);
   getprofile(): Observable<any> {
     return this.httpClient.get(`https://route-posts.routemisr.com/users/profile-data`);
   }
-  getUserProfile(UserId:string): Observable<any> {
+  getUserProfile(UserId: string): Observable<any> {
     return this.httpClient.get(`https://route-posts.routemisr.com/users/${UserId}/profile`);
   }
-  followUnfollowUser(UserId:string): Observable<any> {
-    return this.httpClient.put(`https://route-posts.routemisr.com/users/${UserId}/follow`,null);
+  followUnfollowUser(UserId: string): Observable<any> {
+    return this.httpClient.put(`https://route-posts.routemisr.com/users/${UserId}/follow`, null);
+  }
+  updateProfilePhoto(formData: FormData): Observable<any> {
+    return this.httpClient.put('https://route-posts.routemisr.com/users/upload-photo', formData);
   }
 }

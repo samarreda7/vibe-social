@@ -17,6 +17,7 @@ import { MyPostsComponent } from './features/feed/components/my-posts/my-posts.c
 import { SavedPostsComponent } from './features/feed/components/saved-posts/saved-posts.component';
 import { AllnotificationComponent } from './features/notification/components/allnotification/allnotification.component';
 import { UnreadNotificationComponent } from './features/notification/components/unread-notification/unread-notification.component';
+import { CommunityComponent } from './features/feed/components/community/community.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -43,6 +44,7 @@ export const routes: Routes = [
           { path: 'content', component: FeedContentComponent },
           { path: 'myposts', component: MyPostsComponent },
           { path: 'Saved', component: SavedPostsComponent },
+          { path: 'community', component: CommunityComponent },
         ],
       },
       {

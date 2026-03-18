@@ -1,4 +1,12 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  Input,
+} from '@angular/core';
 import { ProfileService } from './profile.service';
 import { Profile } from './profile.interface';
 import { PostsService } from '../../core/services/posts.service';
@@ -9,6 +17,7 @@ import { RouterLink, RouterOutlet, RouterLinkActive, ActivatedRoute } from '@ang
 import { DatePipe } from '@angular/common';
 import { PostComponent } from '../feed/components/feed-content/post/post.component';
 import { MyPostsComponent } from '../feed/components/my-posts/my-posts.component';
+import { ProfilepicModelComponent } from './profilepic-model/profilepic-model.component';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +29,7 @@ import { MyPostsComponent } from '../feed/components/my-posts/my-posts.component
     RouterOutlet,
     MyPostsComponent,
     RouterLinkActive,
+    ProfilepicModelComponent,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
@@ -127,5 +137,32 @@ export class ProfileComponent implements OnInit {
         if (res.success) this.getUserPosts(this.userId);
       },
     });
+  }
+
+  @Input() profile!: Profile;
+  @Output() onShare = new EventEmitter<void>();
+  @Output() onchange = new EventEmitter<void>();
+  @Output() onupdate = new EventEmitter<void>();
+
+  changeprofileModel = false;
+  selectedImageFile!: File;
+  openProfilepicModal(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.selectedImageFile = file;
+      this.changeprofileModel = true;
+    }
+  }
+  closeProfilepicModal() {
+    this.changeprofileModel = false;
+  }
+  showImageViewer = false;
+
+  openImageViewer() {
+    this.showImageViewer = true;
+  }
+
+  closeImageViewer() {
+    this.showImageViewer = false;
   }
 }

@@ -11,6 +11,9 @@ export class PostsService {
   getAllPosts(): Observable<any> {
     return this.httpClient.get(`https://route-posts.routemisr.com/posts`);
   }
+  getfollowingPosts(): Observable<any> {
+    return this.httpClient.get(`https://route-posts.routemisr.com/posts/feed?only=following&limit=20`);
+  }
   GETBookMarks(): Observable<any> {
     return this.httpClient.get(`https://route-posts.routemisr.com/users/bookmarks`);
   }

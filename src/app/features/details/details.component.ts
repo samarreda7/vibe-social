@@ -3,10 +3,11 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../../core/services/posts.service';
 import { CommentPostComponent } from '../feed/components/feed-content/comment-post/comment-post.component';
+import { PostComponent } from "../feed/components/feed-content/post/post.component";
 
 @Component({
   selector: 'app-details',
-  imports: [CommentPostComponent],
+  imports: [CommentPostComponent, PostComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
 })
@@ -66,4 +67,10 @@ export class DetailsComponent implements OnInit {
   isLikedByMe(post: Post): boolean {
     return post.likes?.some((id: string) => id === this.userId) ?? false;
   }
+  SaveUnsavePost(postId: string): void {
+  this.postsService.savedUnsavePost(postId).subscribe({
+    next: (res) => console.log(res),
+    error: (err) => console.log(err),
+  });
+}
 }

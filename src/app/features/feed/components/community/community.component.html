@@ -1,0 +1,9 @@
+     @for (post of postsList; track post._id) {
+    <app-post
+     [post]="post"
+    (onLike)="LikeUnlikePost($event)"
+    (onDelete)="deletePost($event)"
+    (onSave)="SaveUnsavePost($event)"
+    (onShare)="getfollowingposts()"
+     ></app-post>
+    }

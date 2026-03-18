@@ -7,8 +7,14 @@
       <div class="flex flex-col md:flex-row md:items-start gap-6">
 
         <div class="-mt-16 shrink-0">
-          <div class="w-24 h-24 rounded-full border-4 border-white shadow-md bg-white overflow-hidden">
+          <div
+            class="w-24 h-24 rounded-full border-4 border-white shadow-md bg-white overflow-hidden relative group cursor-pointer">
             <img [src]="profileData?.photo" alt="Avatar" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/30 hidden group-hover:flex items-center justify-center gap-3">
+              <i class="fa-solid fa-expand text-white text-sm" (click)="openImageViewer()"></i>
+              <i class="fa-regular fa-camera text-white text-sm" (click)="profileImg.click()"></i>
+            </div>
+            <input #profileImg type="file" accept="image/*" class="hidden" (change)="openProfilepicModal($event)" />
           </div>
         </div>
 
@@ -36,14 +42,15 @@
           </div>
         </div>
         }@else{
-        <button 
-        (click)="followUnfollowUser(profileData?._id)"
+        <button (click)="followUnfollowUser(profileData?._id)"
           class="cursor-pointer px-5 py-3 bg-gradient-to-br from-blue-950 to-purple-950 rounded-xl  shadow-sm min-w-[90px]">
-          
+
           @if(isFollowing(profileData,userId)){
-          <span class="text-[14px] font-semibold text-white tracking-widest mb-1">Following <i class="fa-solid fa-user-check text-white"></i></span> 
+          <span class="text-[14px] font-semibold text-white tracking-widest mb-1">Following <i
+              class="fa-solid fa-user-check text-white"></i></span>
           }@else{
-           <span class="text-[14px] font-semibold text-white tracking-widest mb-1">Follow <i class="fa-solid fa-user-plus text-white"></i> </span> 
+          <span class="text-[14px] font-semibold text-white tracking-widest mb-1">Follow <i
+              class="fa-solid fa-user-plus text-white"></i> </span>
           }
         </button>
         }
@@ -114,3 +121,20 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+@if(changeprofileModel){
+<app-profilepic-model [profile]="profile" [imageFile]="selectedImageFile" (onClose)="closeProfilepicModal()"
+  (onShared)="onchange.emit()" (onupdate)="getProfile()">
+  ></app-profilepic-model>
+}
+@if(showImageViewer){
+<div class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" (click)="closeImageViewer()">
+  <div class="relative" (click)="$event.stopPropagation()">
+    <img [src]="profileData?.photo" alt="Profile photo"
+      class="max-h-[80vh] max-w-[90vw] rounded-2xl shadow-2xl object-contain" />
+    <button (click)="closeImageViewer()"
+      class="absolute -top-3 -right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md text-slate-600 hover:text-slate-900">
+      <i class="fa-solid fa-xmark text-sm cursor-pointer"></i>
+    </button>
+  </div>
+</div>
+}
