@@ -15,11 +15,15 @@ export class NavbarComponent implements OnInit {
   private readonly notificationService = inject(NotificationService);
   private readonly cdr = inject(ChangeDetectorRef);
   photo: string = '';
+  name: string = '';
+  username: string = '';
   unreadCount: number = 0;
 
   menuOpen = false;
   ngOnInit(): void {
     this.photo = JSON.parse(localStorage.getItem('socialUser')!)?.photo;
+    this.name = JSON.parse(localStorage.getItem('socialUser')!)?.name;
+    this.username = JSON.parse(localStorage.getItem('socialUser')!)?.username;
     initFlowbite();
        this.notificationService.refreshNotifications$.subscribe(() => {
       this.getUnreadCount(); 

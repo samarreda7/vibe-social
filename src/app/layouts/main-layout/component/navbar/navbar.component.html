@@ -2,8 +2,8 @@
   <div class="max-w-screen-xl flex items-center justify-between mx-auto px-6 py-3">
 
     <a class="flex items-center space-x-2 rtl:space-x-reverse shrink-0">
-      <div class="text-white font-extrabold text-2xl">
-        <i class="fa-brands fa-vimeo-v"></i> Vibe
+      <div class="text-white font-extrabold text-2xl flex content-center items-center">
+        <i class="fa-brands fa-vimeo-v"></i> <span class="md:inline-block  hidden">Vibe</span>
       </div>
     </a>
 
@@ -44,9 +44,10 @@
 
     <div class="flex items-center shrink-0">
       <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" data-dropdown-delay="500"
-        class="inline-flex items-center justify-center text-white font-medium text-sm cursor-pointer focus:outline-none"
+        class="inline-flex gap-1 items-center justify-center p-1 px-2 rounded-4xl border border-white/35 text-white font-medium text-sm cursor-pointer focus:outline-none"
         type="button">
         <img [src]="photo" class="w-8 h-8 rounded-full object-cover bg-white/80" alt="profile" />
+        <span class="inline-flex gap-1 content-center items-center"><span class="md:inline-block hidden">{{name}}</span> <i class="fa-solid fa-bars"></i></span>
       </button>
 
      
@@ -55,20 +56,14 @@
         <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownDividerButton">
           <li>
             <a routerLink="" class="flex items-center gap-2 py-2 px-3 text-dark rounded transition-colors">
-              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                  d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4" />
-              </svg>
-              User name
+              <i class="fa-regular fa-user"></i>
+              {{username}}
             </a>
           </li>
           <li>
-            <a routerLink="" class="flex items-center gap-2 py-2 px-3 text-dark rounded transition-colors">
-              <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                  d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4" />
-              </svg>
-              Settings
+            <a routerLink="/change" class="flex items-center gap-2 py-2 px-3 text-dark rounded transition-colors">
+             <i class="fa-solid fa-lock"></i>
+            password
             </a>
           </li>
           <li>

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import {inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,5 +13,8 @@ export class AuthService {
   }
   signIn(data: object): Observable<any> {
     return this.httpClient.post('https://route-posts.routemisr.com/users/signin', data);
+  }
+  changepassword(data: object): Observable<any> {
+    return this.httpClient.patch('https://route-posts.routemisr.com/users/change-password', data);
   }
 }
