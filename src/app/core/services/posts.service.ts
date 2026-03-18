@@ -37,6 +37,11 @@ export class PostsService {
       `https://route-posts.routemisr.com/posts/${postId}/likes?page=1&limit=20`,
     );
   }
+sharePost(postId: string, data: object): Observable<any> {
+  return this.httpClient.post(
+    `https://route-posts.routemisr.com/posts/${postId}/share`,
+    data);
+}
   listLength$ = new BehaviorSubject<number>(0);
   MypostslistLength$ = new BehaviorSubject<number>(0);
   viewedUserId$ = new BehaviorSubject<string>('');

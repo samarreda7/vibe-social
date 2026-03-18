@@ -15,10 +15,12 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 export class NotificationComponent implements OnInit {
   private readonly notificationService = inject(NotificationService);
   listLength: number = 0;
+  unreadCount: number = 0;
   private readonly cdr = inject(ChangeDetectorRef);
   ngOnInit(): void {
     this.notificationService.listLength$.subscribe((len) => {
       this.listLength = len;
+      this.getUnreadCount();
       this.cdr.detectChanges();
     });
   }
@@ -28,6 +30,19 @@ export class NotificationComponent implements OnInit {
         console.log(res);
         this.notificationService.refreshNotifications$.next();
         this.notificationService.refreshNotificationsCount$.next();
+        this.getUnreadCount();
+      },
+    });
+  }
+
+  getUnreadCount() {
+    this.notificationService.getUnreadcount().subscribe({
+      next: (res) => {
+        this.unreadCount = res.data.unreadCount;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.log(err);
       },
     });
   }

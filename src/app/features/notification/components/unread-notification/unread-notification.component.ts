@@ -2,10 +2,11 @@ import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@ang
 import { NotificationService } from '../../notification.service';
 import { Notification } from '../../notification.interface';
 import { TimeagoPipe } from '../../../../shared/pipes/timeago-pipe';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-unread-notification',
-  imports: [TimeagoPipe],
+  imports: [TimeagoPipe, RouterLink],
   templateUrl: './unread-notification.component.html',
   styleUrl: './unread-notification.component.css',
 })

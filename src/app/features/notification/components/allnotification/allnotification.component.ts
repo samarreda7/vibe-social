@@ -3,10 +3,11 @@ import { NotificationService } from '../../notification.service';
 import { Notification } from '../../notification.interface';
 import { TimeagoPipe } from '../../../../shared/pipes/timeago-pipe';
 import { NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-allnotification',
-  imports: [TimeagoPipe, NgClass],
+  imports: [TimeagoPipe, NgClass,RouterLink],
   templateUrl: './allnotification.component.html',
   styleUrl: './allnotification.component.css',
 })

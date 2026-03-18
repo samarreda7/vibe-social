@@ -1,6 +1,6 @@
 @for (notf of notificationList; track $index) {
-<div [class.bg-blue-100]="!notf.isRead" [class.bg-white]="notf.isRead"
-    class="flex items-start gap-4  border border-gray-100 rounded-2xl px-5 py-4 shadow-sm relative my-2">
+<div [routerLink]="['/details',notf.entityId]" [class.bg-blue-100]="!notf.isRead" [class.bg-white]="notf.isRead"
+    class="cursor-pointer flex items-start gap-4  border border-gray-100 rounded-2xl px-5 py-4 shadow-sm relative my-2">
 
     <span class="absolute text-slate-700 text-xs top-4  right-8 w-2.5 h-2.5 ">{{notf.createdAt | timeago }}</span>
 
@@ -45,7 +45,7 @@
         <p class="text-sm text-green-700 mt-0.5 truncate text-xs"><i class="fa-solid fa-check-double"></i>Read</p>
         }
         @else {
-            <button (click)="markNotificationRead(notf._id)" class="text-xs text-blue-900 bg-white/60 p-0.5 rounded-xs cursor-pointer........">Mark as read</button>
+            <button  (click)="markNotificationRead(notf._id); $event.stopPropagation(); $event.preventDefault()" class="text-xs text-blue-900 bg-white/60 p-0.5 rounded-xs cursor-pointer ">Mark as read</button>
         }
         <p class="text-xs text-gray-300 mt-1.5">15h</p>
     </div>
