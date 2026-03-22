@@ -16,7 +16,7 @@
                     <span>{{post.createdAt | timeago}}</span>
                     <span>&middot;</span>
                     <div class="p-0 w-fit items-center bg-neutral-secondary-medium text-heading text-sm rounded-base">
-                        <select [disabled]="post.user._id !== userId" 
+                        <select [disabled]="post.user._id !== userId"
                             class="border-none bg-transparent cursor-pointer ring-0 py-0 px-2 text-xs">
                             <option [selected]="post.privacy === 'public'" value="public">public</option>
                             <option [selected]="post.privacy === 'following'" value="following">followers</option>
@@ -51,20 +51,26 @@
                         <button (click)="SaveUnsavePost(post._id)"
                             (touchend)="SaveUnsavePost(post._id); $event.preventDefault()"
                             class="inline-flex items-center justify-between w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
-                            Save Post
+                            @if(post.bookmarked){
+                            <span>
+                              <i class="fa-solid fa-xmark"></i> Unsave
+                            </span>
+                            }@else{
+                            <span><i class="fa-solid fa-bookmark"></i>  Save Post</span>
+                            }
                         </button>
                     </li>
                     @if(userId == post.user._id){
                     <li>
                         <button (click)="openEditModal()"
                             class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
-                            Edit post
+                           <span><i class="fa-regular fa-pen-to-square"></i> Edit post</span>
                         </button>
                     </li>
                     <li>
                         <button (click)="deletePost(post._id)"
                             class="inline-flex text-red-700 items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
-                            Delete post
+                            <span><i class="fa-solid fa-trash-can"></i> Delete post</span>
                         </button>
                     </li>
                     }
@@ -174,9 +180,6 @@
 </app-share-modal>
 }
 @if(showEditModal) {
-  <app-edit-post-model
-    [post]="post"
-    (onClose)="closeEditModal()"
-    (onUpdated)="onUpdated.emit()">
-  </app-edit-post-model>
+<app-edit-post-model [post]="post" (onClose)="closeEditModal()" (onUpdated)="onUpdated.emit()">
+</app-edit-post-model>
 }
