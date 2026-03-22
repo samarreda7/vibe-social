@@ -16,7 +16,7 @@ export class SideRightComponent implements OnInit {
   showAll = false;
   userId: string = '';
   get visibleSuggestions() {
-    return this.showAll ? this.suggestionList : this.suggestionList.slice(0, 2);
+    return this.showAll ? this.suggestionList : this.suggestionList.slice(0, 1);
   }
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('socialUser')!)?._id;

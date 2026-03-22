@@ -1,0 +1,90 @@
+<div class="ml-10 border-l-2 border-slate-100 pl-3 mt-2">
+
+    <!-- Toggle replies button -->
+    <button (click)="toggleReplies()" class="text-[12px] font-semibold text-blue-500 hover:underline mb-2">
+        {{ showReplies ? 'Hide replies' : 'Show replies (' + replylist.length + ')' }}
+    </button>
+
+    @if(showReplies) {
+
+    <!-- Replies list -->
+    @for(reply of replylist; track reply._id) {
+    <div class="flex gap-2 mb-3">
+        <img [src]="reply.commentCreator.photo" [alt]="reply.commentCreator.name"
+            class="w-7 h-7 rounded-full object-cover shrink-0 mt-1 bg-slate-100 border border-slate-50" />
+
+        <div class="flex-1 flex flex-col items-start min-w-0">
+            <div class="bg-slate-100 rounded-2xl rounded-tl-none px-3 py-2 max-w-full">
+
+                <!-- name -->
+                <div class="flex items-center gap-1.5 mb-0.5">
+                    <span class="text-[13px] font-bold text-slate-900 hover:underline cursor-pointer">
+                        {{reply.commentCreator.name}}
+                    </span>
+                </div>
+
+                <!-- time -->
+                <div class="flex items-center gap-1 text-[11px] text-slate-500 mb-1">
+                    <span>{{reply.createdAt | timeago}}</span>
+                </div>
+
+                
+                @if(reply.content) {
+                <p class="text-[13px] text-slate-800 wrap-break-word">{{reply.content}}</p>
+                }
+                @if(reply.image) {
+                <img [src]="reply.image" class="w-full h-[120px] object-cover mt-1 rounded-sm" alt="" />
+                }
+            </div>
+
+            <!-- timestamp below bubble -->
+            <div class="mt-1 ml-1 text-[11px] text-slate-400">
+                <span>{{reply.createdAt | date:'medium'}}</span>
+            </div>
+        </div>
+    </div>
+    }
+
+    <!-- No replies yet -->
+    @if(replylist.length === 0) {
+    <p class="text-[12px] text-slate-400 mb-2 ml-1">No replies yet.</p>
+    }
+
+    <!-- Reply input -->
+    <form #form (submit)="submitReply($event, form)">
+        <div class="flex items-center gap-1 mb-1 ml-9">
+            <span class="text-[11px] text-slate-400">
+                Replying to <span class="font-semibold text-slate-600">{{parentUsername}}</span>
+            </span>
+        </div>
+        <div class="flex gap-2">
+            <img [src]="photo" alt="user photo"
+                class="w-7 h-7 rounded-full object-cover shrink-0 mt-1 bg-slate-100 border border-slate-50" />
+            <div class="flex-1 bg-slate-100 border border-transparent focus-within:border-blue-300
+            focus-within:ring-4 focus-within:ring-blue-50 focus-within:bg-white
+            transition-all rounded-[18px] p-2 flex flex-col">
+                <textarea [formControl]="replyContent" class="w-full bg-transparent border-none text-[13px] text-slate-800
+              placeholder-slate-500 resize-none outline-none px-2 pt-1 pb-2 min-h-[50px]"
+                    placeholder="Write a reply..."></textarea>
+                @if(imgurl) {
+                <img [src]="imgurl" class="w-40 h-[100px] object-cover m-1 rounded-sm" />
+                }
+                <div class="flex items-center justify-between px-1">
+                    <div class="flex items-center gap-1">
+                        <input (change)="changeimg($event)" type="file" [id]="'reply-' + commentId" class="hidden" />
+                        <label [for]="'reply-' + commentId"
+                            class="flex cursor-pointer items-center justify-center w-7 h-7 rounded-full hover:bg-slate-200 transition">
+                            <i class="fa-regular fa-image text-slate-500 text-[13px]"></i>
+                        </label>
+                    </div>
+                    <button type="submit" class="w-7 h-7 rounded-full bg-blue-400 hover:bg-blue-500 text-white
+                flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-paper-plane text-[11px] ms-0.5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    }
+</div>

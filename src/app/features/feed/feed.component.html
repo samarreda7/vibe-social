@@ -1,15 +1,16 @@
 <section>
     <div class="container mx-auto grid lg:grid-cols-[220px_minmax(0,1fr)_360px] gap-4  py-5 ">
-        <!-- left aside -->
-        <app-side-left></app-side-left>
+        <div class="order-1 md:order-1">
+            <app-side-left></app-side-left>
+        </div>
 
-        <!-- <app-feed-content></app-feed-content> -->
-       <div class="w-full">
-         <router-outlet></router-outlet>
-       </div>
+        
+        <div class="order-3 md:order-2 w-full">
+            <router-outlet></router-outlet>
+        </div>
 
-        <!-- right aside -->
-        <app-side-right></app-side-right>
-
+        <div class="order-2 md:order-3">
+            <app-side-right></app-side-right>
+        </div>
     </div>
 </section>

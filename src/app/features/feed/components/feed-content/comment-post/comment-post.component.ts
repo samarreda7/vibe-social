@@ -6,10 +6,11 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { initFlowbite } from 'flowbite';
+import { ReplyComponent } from "./reply/reply.component";
 
 @Component({
   selector: 'app-comment-post',
-  imports: [ReactiveFormsModule , DatePipe],
+  imports: [ReactiveFormsModule, DatePipe, ReplyComponent],
   templateUrl: './comment-post.component.html',
   styleUrl: './comment-post.component.css',
 })
@@ -102,4 +103,5 @@ toggleMenu(id: string): void {
 closeMenu(): void {
   this.openMenuId = null;
 }
+
 }
