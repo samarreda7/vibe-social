@@ -1,14 +1,15 @@
-<aside
-    class="bg-white sticky top-4 rounded-3xl shadow-sm border border-slate-100 p-4 font-sans ">
+<aside class="bg-white sticky top-4 rounded-3xl shadow-sm border border-slate-100 p-4 font-sans ">
     <div class="flex items-center justify-between mb-4 px-1">
         <div class="flex items-center gap-2">
-            <i class="fa-solid fa-user-group bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent text-[1.1rem]"></i>
+            <i
+                class="fa-solid fa-user-group bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent text-[1.1rem]"></i>
             <h2 class="font-bold text-slate-900 text-[17px]">Suggested Friends</h2>
         </div>
-        <span class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-full">{{suggestionList.length}}</span>
+        <span
+            class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-full">{{visibleSuggestions.length}}</span>
     </div>
     <div class="max-h-96 overflow-y-auto custom-scroll px-1">
-        @for (suggested of suggestionList; track suggested._id) {
+        @for (suggested of visibleSuggestions; track suggested._id) {
 
         <div class="relative mb-4 ">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -33,19 +34,24 @@
                                 <span
                                     class="text-[13px] text-slate-500 truncate leading-tight mt-0.5">@{{suggested.username}}</span>
                             </div>
-                            <button
-                                class="shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 text-[13px] font-bold rounded-xl transition-colors">
+                            <span ></span>
+                            <span class="bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl">
+                                 <button
+                                class="shrink-0 flex items-center gap-1.5 px-3.5 py-1.5  bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent text-[13px] font-bold rounded-xl duration-300 transition-colors cursor-pointer">
                                 <i class="fa-solid fa-user-plus text-[11px]"></i>
                                 Follow
                             </button>
+                            </span>
+                           
                         </div>
 
                         <div class="flex items-center gap-2">
                             <span
                                 class="text-[11px] font-semibold text-slate-500 bg-slate-100/80 px-2 py-1 rounded-lg">{{suggested.followersCount}}
                                 followers</span>
-                            <span class="text-[11px] font-semibold text-blue-500 bg-blue-50 px-2 py-1 rounded-lg">{{suggested.mutualFollowersCount}}
-                                mutual</span>
+                            <span class="bg-gradient-to-r from-blue-50 to-purple-50"><span
+                                    class="text-[11px] font-semibold bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent px-2 py-1 rounded-lg">{{suggested.mutualFollowersCount}}
+                                    mutual</span></span>
                         </div>
                     </div>
                 </div>
@@ -54,8 +60,8 @@
         }
     </div>
 
-    <button
+    <button (click)="showAll = !showAll"
         class="w-full cursor-pointer mt-3 py-2.5 bg-white border border-slate-200 rounded-xl text-[14px] font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all outline-none focus:ring-4 focus:ring-slate-100">
-        View more
+        {{ showAll ? 'Show less' : 'View more' }}
     </button>
 </aside>

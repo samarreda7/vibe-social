@@ -1,0 +1,57 @@
+<div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-5">
+
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-[17px] font-bold text-slate-900">Edit Post</h2>
+            <button (click)="onClose.emit()" class="text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <textarea [formControl]="body"
+            class="w-full resize-none bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-[15px] text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-blue-50 focus:border-blue-300 transition-all min-h-28"
+            placeholder="What's on your mind...?">
+    </textarea>
+
+        <!-- show existing image -->
+        @if(post.image && !selectedImage) {
+        <div class="relative mt-3 rounded-xl overflow-hidden">
+            <img [src]="post.image" class="w-full max-h-48 object-contain bg-slate-100" />
+            <button (click)="post.image = ''"
+                class="absolute top-2 right-2 bg-black/50 text-white rounded-full w-7 h-7 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+        </div>
+        }
+
+        <!-- new image preview -->
+        @if(selectedImage) {
+        <div class="relative mt-3 rounded-xl overflow-hidden">
+            <img [src]="previewUrl" class="w-full max-h-48 object-contain bg-slate-100" />
+        </div>
+        }
+
+        <div class="flex items-center justify-between mt-4">
+            @if(!post.isShare){
+            <label
+                class="cursor-pointer flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors text-[14px] font-medium">
+                <i class="fa-regular fa-image text-lg"></i>
+                Change photo
+                <input type="file" accept="image/*" class="hidden" (change)="onFileChange($event)" />
+            </label>
+            }
+
+            <div class="flex gap-2">
+                <button (click)="onClose.emit()"
+                    class="px-4 py-2 rounded-xl text-[14px] font-semibold text-slate-600 hover:bg-slate-100 transition-colors">
+                    Cancel
+                </button>
+                <button (click)="submitEdit()" [disabled]="isLoading"
+                    class="px-5 py-2 rounded-xl text-[14px] font-semibold bg-gradient-to-r from-blue-800 to-purple-800 text-white hover:opacity-90 transition-opacity disabled:opacity-50">
+                    {{ isLoading ? 'Saving...' : 'Save changes' }}
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -15,10 +15,18 @@ import { DatePipe } from '@angular/common';
 import { initFlowbite } from 'flowbite';
 import { TimeagoPipe } from '../../../../../shared/pipes/timeago-pipe';
 import { ShareModalComponent } from '../share-modal/share-modal.component';
+import { EditPostModelComponent } from './edit-post-model/edit-post-model.component';
 
 @Component({
   selector: 'app-post',
-  imports: [CommentPostComponent, RouterLink, DatePipe, TimeagoPipe, ShareModalComponent],
+  imports: [
+    CommentPostComponent,
+    RouterLink,
+    DatePipe,
+    TimeagoPipe,
+    ShareModalComponent,
+    EditPostModelComponent,
+  ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.css',
 })
@@ -28,18 +36,23 @@ export class PostComponent implements OnInit {
   private readonly cdr = inject(ChangeDetectorRef);
 
   @Output() onShare = new EventEmitter<void>();
+  showEditModal = false;
 
-  
   showShareModal = false;
 
-  
   openShareModal() {
     this.showShareModal = true;
   }
   closeShareModal() {
     this.showShareModal = false;
   }
-
+  @Output() onUpdated = new EventEmitter<void>();
+  openEditModal() {
+    this.showEditModal = true;
+  }
+  closeEditModal() {
+    this.showEditModal = false;
+  }
   ngOnInit(): void {}
   ngAfterViewInit() {
     initFlowbite();

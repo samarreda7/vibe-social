@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../../core/services/posts.service';
 import { CommentPostComponent } from '../feed/components/feed-content/comment-post/comment-post.component';
-import { PostComponent } from "../feed/components/feed-content/post/post.component";
+import { PostComponent } from '../feed/components/feed-content/post/post.component';
 
 @Component({
   selector: 'app-details',
@@ -27,8 +27,8 @@ export class DetailsComponent implements OnInit {
   getId(): void {
     this.activatedRoute.paramMap.subscribe((param) => {
       this.postId = param.get('id')!;
+      this.getSinglePost();
     });
-    this.getSinglePost();
   }
   getSinglePost(): void {
     this.postsService.getSinglePost(this.postId).subscribe({
@@ -57,6 +57,7 @@ export class DetailsComponent implements OnInit {
     this.postsService.LikeUnlikePost(postId).subscribe({
       next: (res) => {
         console.log(res);
+        this.getSinglePost();
         this.cdr.detectChanges();
       },
       error: (err) => {
@@ -68,9 +69,9 @@ export class DetailsComponent implements OnInit {
     return post.likes?.some((id: string) => id === this.userId) ?? false;
   }
   SaveUnsavePost(postId: string): void {
-  this.postsService.savedUnsavePost(postId).subscribe({
-    next: (res) => console.log(res),
-    error: (err) => console.log(err),
-  });
-}
+    this.postsService.savedUnsavePost(postId).subscribe({
+      next: (res) => console.log(res),
+      error: (err) => console.log(err),
+    });
+  }
 }

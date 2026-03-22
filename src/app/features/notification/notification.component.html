@@ -9,7 +9,7 @@
       </div>
       <button
       (click)="markAllIRead()"
-      class="cursor-pointer flex items-center gap-1.5 text-sm text-blue-900 hover:bg-blue-200 rounded-xl p-1 transition-colors mt-1">
+      class="cursor-pointer flex items-center gap-1.5 text-sm bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent hover:bg-blue-200 rounded-xl p-1 transition-colors mt-1">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
         </svg>
@@ -20,13 +20,13 @@
     
     <div class="flex items-center gap-2 mb-5">
       
-      <button routerLink="AllNotification" routerLinkActive="!bg-blue-500 !text-white !border-blue-500"
+      <button routerLink="AllNotification" routerLinkActive="!bg-gradient-to-r from-blue-800 to-purple-800  !text-white"
         class="px-5 py-1.5 rounded-full text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-colors">
         All
       </button>
 
       <!-- Unread -->
-      <button routerLink="unreadNotification" routerLinkActive="!bg-blue-500 !text-white !border-blue-500"
+      <button routerLink="unreadNotification" routerLinkActive="!bg-gradient-to-r from-blue-800 to-purple-800  !text-white"
         class="px-5 py-1.5 rounded-full text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition-colors">
         Unread {{unreadCount}}
       </button>

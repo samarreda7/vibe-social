@@ -45,7 +45,10 @@
         <p class="text-sm text-green-700 mt-0.5 truncate text-xs"><i class="fa-solid fa-check-double"></i>Read</p>
         }
         @else {
-            <button  (click)="markNotificationRead(notf._id); $event.stopPropagation(); $event.preventDefault()" class="text-xs text-blue-900 bg-white/60 p-0.5 rounded-xs cursor-pointer ">Mark as read</button>
+        <button (click)="markNotificationRead(notf._id); $event.stopPropagation(); $event.preventDefault()"
+            class="text-xs font-bold bg-gradient-to-r from-blue-800 to-purple-800  bg-clip-text text-transparent p-0.5 rounded-xs cursor-pointer ">Mark
+            as read</button>
+
         }
         <p class="text-xs text-gray-300 mt-1.5">15h</p>
     </div>

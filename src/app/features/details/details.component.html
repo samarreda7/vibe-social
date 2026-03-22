@@ -5,7 +5,9 @@
       [userId]="userId"
       (onLike)="LikeUnlikePost($event)"
       (onDelete)="deletePost($event)"
-      (onSave)="SaveUnsavePost($event)">
+      (onSave)="SaveUnsavePost($event)"
+      (onUpdated)="getSinglePost()"
+      >
     </app-post>
   }
 </div>

@@ -15,9 +15,7 @@ export class ProfileService {
   getUserProfile(UserId: string): Observable<any> {
     return this.httpClient.get(`https://route-posts.routemisr.com/users/${UserId}/profile`);
   }
-  followUnfollowUser(UserId: string): Observable<any> {
-    return this.httpClient.put(`https://route-posts.routemisr.com/users/${UserId}/follow`, null);
-  }
+
   updateProfilePhoto(formData: FormData): Observable<any> {
     return this.httpClient.put('https://route-posts.routemisr.com/users/upload-photo', formData);
   }

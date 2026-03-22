@@ -16,7 +16,7 @@
                     <span>{{post.createdAt | timeago}}</span>
                     <span>&middot;</span>
                     <div class="p-0 w-fit items-center bg-neutral-secondary-medium text-heading text-sm rounded-base">
-                        <select [disabled]="post.user._id !== userId"
+                        <select [disabled]="post.user._id !== userId" 
                             class="border-none bg-transparent cursor-pointer ring-0 py-0 px-2 text-xs">
                             <option [selected]="post.privacy === 'public'" value="public">public</option>
                             <option [selected]="post.privacy === 'following'" value="following">followers</option>
@@ -33,8 +33,7 @@
                 <i class="fa-solid fa-bookmark"></i> <span class="hidden sm:inline">saved</span>
             </span>
             }
-            <button [id]="'dropdownMenuIconButton-' + post._id"
-                [attr.data-dropdown-toggle]="'dropdownDots-' + post._id"
+            <button [id]="'dropdownMenuIconButton-' + post._id" [attr.data-dropdown-toggle]="'dropdownDots-' + post._id"
                 data-dropdown-placement="bottom-end"
                 class="text-heading bg-neutral-primary box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-base text-sm p-2 focus:outline-none"
                 type="button">
@@ -57,7 +56,8 @@
                     </li>
                     @if(userId == post.user._id){
                     <li>
-                        <button class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
+                        <button (click)="openEditModal()"
+                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">
                             Edit post
                         </button>
                     </li>
@@ -76,53 +76,56 @@
     <!-- ── SHARED POST layout ── -->
     @if(post.isShare && post.sharedPost) {
 
-      <!-- sharer's caption -->
-      @if(post.body) {
-        <p class="text-[15px] text-slate-900 mb-3 break-words">{{post.body}}</p>
-      }
+    <!-- sharer's caption -->
+    @if(post.body) {
+    <p class="text-[15px] text-slate-900 mb-3 break-words">{{post.body}}</p>
+    }
 
-      <div [routerLink]="['/details', post._id]"
-           class="cursor-pointer border border-slate-200 rounded-xl overflow-hidden bg-slate-50 mb-4">
+    <div [routerLink]="['/details', post.sharedPost.id]"
+        class="cursor-pointer border border-slate-200 rounded-xl overflow-hidden bg-slate-50 mb-4">
 
         <div class="flex items-center justify-between px-3 pt-3 pb-2">
-          <div class="flex items-center gap-2">
-            <img [src]="post.sharedPost.user.photo" [alt]="post.sharedPost.user.username"
-                 class="size-8 rounded-full object-cover border border-slate-100 shrink-0" />
-            <div>
-              <p class="text-[14px] font-bold text-slate-900 leading-tight">{{post.sharedPost.user.name}}</p>
-              <p class="text-[12px] text-slate-400">@{{post.sharedPost.user.username}}</p>
+            <div class="flex items-center gap-2">
+                <img [src]="post.sharedPost.user.photo" [alt]="post.sharedPost.user.username"
+                    class="size-8 rounded-full object-cover border border-slate-100 shrink-0" />
+                <div>
+                    <p class="text-[14px] font-bold text-slate-900 leading-tight">{{post.sharedPost.user.name}}</p>
+                    <p class="text-[12px] text-slate-400">@{{post.sharedPost.user.username}}</p>
+                </div>
             </div>
-          </div>
-          <a [routerLink]="['/details', post.sharedPost._id]" (click)="$event.stopPropagation()"
-             class="text-[12px] font-semibold text-blue-600 hover:underline flex items-center gap-1">
-            Original Post <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-          </a>
+            <a [routerLink]="['/details', post.sharedPost._id]" (click)="$event.stopPropagation()"
+                class="text-[12px] font-semibold bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent hover:underline flex items-center gap-1">
+                Original Post <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
         </div>
 
         @if(post.sharedPost.body) {
-          <p class="px-3 pb-2 text-[14px] text-slate-700 break-words">{{post.sharedPost.body}}</p>
+        <p class="px-3 pb-2 text-[14px] text-slate-700 break-words">{{post.sharedPost.body}}</p>
         }
         @if(post.sharedPost.image) {
-          <img [src]="post.sharedPost.image" class="w-full max-h-80 object-cover" alt="" />
-        }
-      </div>
+        <div class="w-full bg-slate-100 rounded-b-xl overflow-hidden">
+            <img [src]="post.sharedPost.image" class="w-full max-h-140 object-contain" alt="" />
+        </div> }
+    </div>
 
     } @else {
-      
-      <div [routerLink]="['/details', post._id]" class="cursor-pointer text-[15px] text-slate-900 mb-4">
+
+    <div [routerLink]="['/details', post._id]" class="cursor-pointer text-[15px] text-slate-900 mb-4">
         @if(post.body){
-          <p class="break-words">{{post.body}}</p>
+        <p class="break-words">{{post.body}}</p>
         }
         @if(post.image){
-          <img [src]="post.image" class="w-full max-h-90 object-cover rounded shadow mt-2" alt="" />
-        }
-      </div>
+        <div class="w-full bg-slate-100 rounded-b-xl overflow-hidden mt-2">
+            <img [src]="post.image" class="w-full max-h-96 object-contain" alt="" />
+        </div> }
+    </div>
     }
 
     <!-- counts -->
     <div class="flex items-center justify-between text-[13px] text-slate-500 mb-3 px-1">
         <div class="flex items-center gap-1.5 cursor-pointer hover:underline">
-            <div class="w-5 h-5 rounded-full bg-blue-500 text-white flex items-center justify-center text-2xs">
+            <div
+                class="w-5 h-5 rounded-full bg-gradient-to-r from-blue-800 to-purple-800  text-white flex items-center justify-center text-2xs">
                 <i class="fa-solid fa-thumbs-up"></i>
             </div>
             <span>{{post.likesCount}} likes</span>
@@ -130,7 +133,9 @@
         <div class="flex items-center gap-3">
             <span class="cursor-pointer hover:underline">{{post.sharesCount}} shares</span>
             <span class="cursor-pointer hover:underline">{{post.commentsCount}} comments</span>
-            <button  [routerLink]="['/details', post._id]" class="font-semibold cursor-pointer text-blue-600 hover:underline">View details</button>
+            <button [routerLink]="['/details', post._id]"
+                class="font-semibold cursor-pointer text-[12px] font-extrabold bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent hover:underline flex items-center">View
+                details</button>
         </div>
     </div>
 
@@ -138,11 +143,10 @@
 
     <!-- action buttons -->
     <div class="flex items-center justify-between px-1 py-1">
-        <button (click)="likeUnlikePost(post._id)"
-            [class.text-blue-800]="isLikedByMe(post)"
+        <button (click)="likeUnlikePost(post._id)" [class.text-blue-800]="isLikedByMe(post)"
             [class.text-slate-600]="!isLikedByMe(post)"
             class="flex-1 cursor-pointer flex items-center justify-center gap-2 font-semibold text-[14px] hover:bg-slate-50 py-2 rounded-lg transition-colors">
-            <i class="fa-regular fa-thumbs-up text-lg"></i>
+            <i class="fa-regular fa-solid text-lg"></i>
             Like
         </button>
         <button #el
@@ -160,15 +164,19 @@
     <hr class="border-t border-slate-200 mt-1 mb-4" />
 
     @defer (on interaction(el)) {
-      <app-comment-post [PostId]="post._id"></app-comment-post>
+    <app-comment-post [PostId]="post._id"></app-comment-post>
     }
 
 </div>
 
 @if(showShareModal) {
-  <app-share-modal
+<app-share-modal [post]="post" (onClose)="closeShareModal()" (onShared)="onShare.emit()">
+</app-share-modal>
+}
+@if(showEditModal) {
+  <app-edit-post-model
     [post]="post"
-    (onClose)="closeShareModal()"
-    (onShared)="onShare.emit()">
-  </app-share-modal>
+    (onClose)="closeEditModal()"
+    (onUpdated)="onUpdated.emit()">
+  </app-edit-post-model>
 }

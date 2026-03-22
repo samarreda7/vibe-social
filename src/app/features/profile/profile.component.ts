@@ -18,6 +18,7 @@ import { DatePipe } from '@angular/common';
 import { PostComponent } from '../feed/components/feed-content/post/post.component';
 import { MyPostsComponent } from '../feed/components/my-posts/my-posts.component';
 import { ProfilepicModelComponent } from './profilepic-model/profilepic-model.component';
+import { FollowerSuggestionsService } from '../feed/components/side-right/follower-suggestions.service';
 
 @Component({
   selector: 'app-profile',
@@ -36,6 +37,7 @@ import { ProfilepicModelComponent } from './profilepic-model/profilepic-model.co
 })
 export class ProfileComponent implements OnInit {
   private readonly profileService = inject(ProfileService);
+  private readonly followerSuggestionsService = inject(FollowerSuggestionsService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly postsService = inject(PostsService);
   private readonly cdr = inject(ChangeDetectorRef);
@@ -119,7 +121,7 @@ export class ProfileComponent implements OnInit {
   followUnfollowUser(userId: string | undefined) {
     if (!userId) return;
 
-    this.profileService.followUnfollowUser(userId).subscribe({
+    this.followerSuggestionsService.followUnfollowUser(userId).subscribe({
       next: (res) => {
         this.getUserProfile(userId);
         this.cdr.detectChanges();
