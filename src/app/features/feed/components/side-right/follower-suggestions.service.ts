@@ -1,25 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FollowerSuggestionsService {
   private readonly httpClient = inject(HttpClient);
-  header: Object = {
-    headers: {
-      AUTHORIZATION: `Bearer ${localStorage.getItem('socialToken')}`,
-    },
-  };
 
   getFollowSuggestions(): Observable<any> {
-    return this.httpClient.get(
-      'https://route-posts.routemisr.com/users/suggestions?limit=10',
-      this.header,
-    );
+    return this.httpClient.get(environment.baseUrl + '/users/suggestions?limit=10');
   }
   followUnfollowUser(UserId: string): Observable<any> {
-    return this.httpClient.put(`https://route-posts.routemisr.com/users/${UserId}/follow`, null);
+    return this.httpClient.put(environment.baseUrl + `/users/${UserId}/follow`, null);
   }
 }

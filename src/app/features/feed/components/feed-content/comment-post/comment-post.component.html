@@ -39,10 +39,10 @@
                 <button [class.text-blue-500]="isLikedByMe(comment)" (click)="LikeUnlikePost(comment.post,comment._id)"
                     class="cursor-pointer hover:underline">Like ({{comment.likes.length}})</button>
                 <button #ele class="cursor-pointer hover:underline">
-                    Reply
-                    @if(comment.repliesCount > 0) {
+                    Reply ({{comment.repliesCount}})
+                    <!-- @if(comment.repliesCount > 0) {
                     ({{comment.repliesCount}})
-                    }
+                    } -->
                 </button>
                 <div class="relative">
 

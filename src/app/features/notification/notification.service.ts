@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -9,23 +10,23 @@ export class NotificationService {
   private readonly httpClient = inject(HttpClient);
 
   getAllNotifaction(): Observable<any> {
-    return this.httpClient.get(`https://route-posts.routemisr.com/notifications?page=1&limit=20`);
+    return this.httpClient.get(environment.baseUrl +`/notifications?page=1&limit=20`);
   }
   getunreadNotifaction(): Observable<any> {
     return this.httpClient.get(
-      `https://route-posts.routemisr.com/notifications?unread=false&page=1&limit=20`,
+      environment.baseUrl +`/notifications?unread=false&page=1&limit=20`,
     );
   }
   getUnreadcount(): Observable<any> {
-    return this.httpClient.get(`https://route-posts.routemisr.com/notifications/unread-count`);
+    return this.httpClient.get(environment.baseUrl +`/notifications/unread-count`);
   }
 
   markAllNotificationRead(): Observable<any> {
-    return this.httpClient.patch(`https://route-posts.routemisr.com/notifications/read-all`, null);
+    return this.httpClient.patch(environment.baseUrl +`/notifications/read-all`, null);
   }
   markNotificationRead(notificationId: string): Observable<any> {
     return this.httpClient.patch(
-      `https://route-posts.routemisr.com/notifications/${notificationId}/read`,
+      environment.baseUrl +`/notifications/${notificationId}/read`,
       null,
     );
   }

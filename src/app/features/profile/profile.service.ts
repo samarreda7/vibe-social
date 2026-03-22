@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +11,13 @@ export class ProfileService {
 
   private readonly httpClient = inject(HttpClient);
   getprofile(): Observable<any> {
-    return this.httpClient.get(`https://route-posts.routemisr.com/users/profile-data`);
+    return this.httpClient.get(environment.baseUrl + `/users/profile-data`);
   }
   getUserProfile(UserId: string): Observable<any> {
-    return this.httpClient.get(`https://route-posts.routemisr.com/users/${UserId}/profile`);
+    return this.httpClient.get(environment.baseUrl + `/users/${UserId}/profile`);
   }
 
   updateProfilePhoto(formData: FormData): Observable<any> {
-    return this.httpClient.put('https://route-posts.routemisr.com/users/upload-photo', formData);
+    return this.httpClient.put(environment.baseUrl + '/users/upload-photo', formData);
   }
 }
