@@ -6,7 +6,7 @@
             <h2 class="font-bold text-slate-900 text-[17px]">Suggested Friends</h2>
         </div>
         <span
-            class="bg-slate-100 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-full">{{visibleSuggestions.length}}</span>
+            class="bg-gradient-to-r from-blue-800 to-purple-800 text-white text-xs font-bold px-2.5 py-1 rounded-full">{{visibleSuggestions.length}}</span>
     </div>
     <div class="max-h-96 overflow-y-auto custom-scroll px-1">
         @for (suggested of visibleSuggestions; track suggested._id) {
@@ -47,11 +47,13 @@
 
                         <div class="flex items-center gap-2">
                             <span
-                                class="text-[11px] font-semibold text-slate-500 bg-slate-100/80 px-2 py-1 rounded-lg">{{suggested.followersCount}}
-                                followers</span>
+                                class="text-[11px] font-semibold text-slate-500 px-2 py-1 rounded-lg">{{suggested.followersCount}}
+                                followers
+                            </span>
                             <span class="bg-gradient-to-r from-blue-50 to-purple-50"><span
                                     class="text-[11px] font-semibold bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent px-2 py-1 rounded-lg">{{suggested.mutualFollowersCount}}
-                                    mutual</span></span>
+                                    mutual</span>
+                                </span>
                         </div>
                     </div>
                 </div>

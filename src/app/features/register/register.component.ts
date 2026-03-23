@@ -1,4 +1,3 @@
-import { routes } from './../../app.routes';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import {
@@ -22,7 +21,6 @@ export class RegisterComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
-  msgError: string = '';
   loading: boolean = false;
 
   registerform: FormGroup = new FormGroup(
@@ -63,7 +61,6 @@ export class RegisterComponent {
         },
         error: (err: HttpErrorResponse) => {
           console.log(err);
-          this.msgError = err.error.message;
           this.loading = false;
           this.cdr.detectChanges();
         },
@@ -73,6 +70,7 @@ export class RegisterComponent {
         },
       });
     } else {
+      this.registerform.markAsTouched();
     }
   }
 }

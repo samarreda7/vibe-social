@@ -4,7 +4,6 @@ import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -26,12 +25,12 @@ export class LoginComponent {
       Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#!@\$%\^&*-]).{8,}$/),
     ]),
   });
-  registerSubscribe: Subscription = new Subscription();
+  loginsubscripe: Subscription = new Subscription();
   submitForm(): void {
     if (this.loginform.valid) {
       this.loading = true;
-      this.registerSubscribe.unsubscribe();
-      this.registerSubscribe = this.authService.signIn(this.loginform.value).subscribe({
+      this.loginsubscripe.unsubscribe();
+      this.loginsubscripe = this.authService.signIn(this.loginform.value).subscribe({
         next: (res) => {
           console.log(res);
           localStorage.setItem('socialToken', res.data.token);
@@ -41,7 +40,6 @@ export class LoginComponent {
         },
         error: (err: HttpErrorResponse) => {
           console.log(err);
-          this.msgError = err.error.message;
           this.loading = false;
           this.cdr.detectChanges();
         },
@@ -51,6 +49,7 @@ export class LoginComponent {
         },
       });
     } else {
+      this.loginform.markAllAsTouched(); 
     }
   }
 }

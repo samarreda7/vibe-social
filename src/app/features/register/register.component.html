@@ -2,11 +2,11 @@
     <form [formGroup]="registerform" (ngSubmit)="submitForm()"
         class="w-full max-w-xl mx-auto min-h-8 bg-white  border border-blue-400 rounded-2xl">
         <div class="px-5 py-10">
-            <h1 class="font-extrabold text-blue-950  text-3xl text-center">REGISTER <i
+            <h1 class="font-extrabold bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent  text-3xl text-center">REGISTER <i
                     class="fa-regular fa-pen-to-square"></i></h1>
             <p class=" text-gray-500 text-center">Create new account</p>
             <div class="sm:col-span-3 mb-2">
-                <label for="fullname" class="block text-sm/6 font-medium text-blue-950">Full name</label>
+                <label for="fullname" class=" text-sm/6 bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-semibold">Full name</label>
                 <div class="mt-2">
                     <input [class]="{'' : registerform.get('name')?.valid , 
                         'outline-red-800' : registerform.get('name')?.invalid && registerform.get('name')?.touched
@@ -28,7 +28,7 @@
             </div>
             }
             <div class="sm:col-span-3 mb-2">
-                <label for="username" class="block text-sm/6 font-medium text-blue-950 ">Username</label>
+                <label for="username" class=" text-sm/6 bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-semibold">Username</label>
                 <div class="mt-2">
                     <input [class]="{'' : registerform.get('username')?.valid , 
                         'outline-red-800' : registerform.get('username')?.invalid && registerform.get('username')?.touched
@@ -51,7 +51,7 @@
             </div>
             }
             <div class="sm:col-span-4 mb-2">
-                <label for="email" class="block text-sm/6 font-medium text-blue-950 ">Email address</label>
+                <label for="email" class=" text-sm/6 bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-semibold">Email address</label>
                 <div class="mt-2">
                     <input [class]="{'' : registerform.get('email')?.valid , 
                         'outline-red-800' : registerform.get('email')?.invalid && registerform.get('email')?.touched
@@ -73,7 +73,7 @@
             </div>
             }
             <div class="sm:col-span-4 mb-2">
-                <label for="dateOfBirth" class="block text-sm/6 font-medium text-blue-950 ">Email address</label>
+                <label for="dateOfBirth" class=" text-sm/6 bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-semibold">Date of Birth</label>
                 <div class="mt-2">
                     <input [class]="{'' : registerform.get('dateOfBirth')?.valid , 
                         'outline-red-800' : registerform.get('dateOfBirth')?.invalid && registerform.get('dateOfBirth')?.touched
@@ -92,7 +92,7 @@
             </div>
             }
             <div class="sm:col-span-3 mb-2">
-                <label for="gender" class="block text-sm/6 font-medium text-blue-950 ">gender</label>
+                <label for="gender" class=" text-sm/6 bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-semibold">gender</label>
                 <div class="mt-2 grid grid-cols-1">
                     <select id="gender" name="gender" autocomplete="gender" formControlName="gender" [class]="{'' : registerform.get('gender')?.valid , 
                         'outline-red-800' : registerform.get('gender')?.invalid && registerform.get('gender')?.touched
@@ -120,7 +120,7 @@
             </div>
             }
             <div class="sm:col-span-4 mb-2">
-                <label for="password" class="block text-sm/6 font-medium text-blue-950 ">Password</label>
+                <label for="password" class=" text-sm/6 bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-semibold">Password</label>
                 <div class="mt-2">
                     <input [class]="{'' : registerform.get('password')?.valid , 
                         'outline-red-800' : registerform.get('password')?.invalid && registerform.get('password')?.touched
@@ -142,7 +142,7 @@
             </div>
             }
             <div class="sm:col-span-4 mb-2">
-                <label for="rePassword" class="block text-sm/6 font-medium text-blue-950 ">Confirm password</label>
+                <label for="rePassword" class=" text-sm/6 bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-semibold">Confirm password</label>
                 <div class="mt-2">
                     <input [class]="{'' : registerform.get('rePassword')?.valid , 
                         'outline-red-800' : registerform.get('rePassword')?.invalid && registerform.get('rePassword')?.touched
@@ -178,11 +178,9 @@
 
                 </button>
             </div>
-            <a class="cursor-pointer text-blue-900 font-bold block mx-auto text-center" routerLink="/login">
+            <a class="cursor-pointer bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-bold block mx-auto text-center" routerLink="/login">
                 Already have an account ?</a>
-            @if(msgError){
-            <p class="text-center mt-4 bg-pink-200 text-red-950 font-bold w-75 mx-auto p-1">{{msgError}}</p>
-            }
+          
         </div>
     </form>
 </section>

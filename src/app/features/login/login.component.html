@@ -2,9 +2,9 @@
     <form [formGroup]="loginform" (ngSubmit)="submitForm()"
         class="w-full max-w-xl mx-auto min-h-8 bg-white rounded-2xl">
         <div class="px-5 py-10">
-            <h1 class="font-extrabold text-blue-950  text-3xl text-center">LogIn</h1>
+            <h1 class="font-extrabold bg-gradient-to-r from-blue-800 to-purple-800 bg-clip-text text-transparent  text-3xl text-center">LogIn</h1>
             <div class="sm:col-span-3 mb-4">
-                <label for="username" class="block text-sm/6 font-medium text-blue-950">Username</label>
+                <label for="username" class="block text-sm/6 font-medium bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-semibold">Username</label>
                 <div class="mt-2">
                     <input id="username" type="text" name="username" formControlName="username"
                         autocomplete="given-username" placeholder="Enter your Username"
@@ -17,12 +17,15 @@
                     <ul class="list-disc pl-4">
                         @if(loginform.get('username')?.hasError('required')){<li class="text-rose-900 text-xs"> Name
                             can't be null</li> }
+                        @if(loginform.get('username')?.hasError('minlength')){
+                        <li class="text-rose-900 text-xs">Username must be at least 3 characters</li>
+                        }
                     </ul>
                 </div>
             </div>
             }
             <div class="sm:col-span-4 mb-4">
-                <label for="password" class="block text-sm/6 font-medium text-blue-950">Password</label>
+                <label for="password" class="block text-sm/6 font-medium bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-semibold">Password</label>
                 <div class="mt-2">
                     <input id="password" type="password" name="password" formControlName="password"
                         placeholder="Enter your Password"
@@ -35,19 +38,23 @@
                     <ul class="list-disc pl-4">
                         @if(loginform.get('password')?.hasError('required')){
                         <li class="text-rose-900 text-xs"> password can't be null</li> }
+                        @if(loginform.get('password')?.hasError('pattern')){
+                        <li class="text-rose-900 text-xs">
+                            Password must be 8+ chars with uppercase, lowercase, number & special character
+                        </li>
+                        }
                     </ul>
                 </div>
             </div>
             }
+
             <div class="">
                 <Button
                     class="rounded-md bg-gradient-to-br from-blue-700 to-purple-800  w-75 block mx-auto my-2 text-white font-bold cursor-pointer">LogIn</Button>
             </div>
-            <button class="cursor-pointer text-blue-900 font-bold block mx-auto"> <a routerLink="/register">Create New
+            <button class="cursor-pointer bg-gradient-to-r from-blue-900 to-purple-900 bg-clip-text text-transparent font-bold block mx-auto"> <a routerLink="/register">Create New
                     Account </a></button>
-            @if(msgError){
-            <p class="text-center mt-4 bg-pink-200 text-red-950 font-bold w-75 mx-auto p-1">{{msgError}}</p>
-            }
+
         </div>
     </form>
 </section>

@@ -99,16 +99,22 @@
     <div
       class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 px-4 py-3 flex items-center justify-between">
       <div class="flex gap-2">
-        <button routerLink="myposts" routerLinkActive="!bg-gradient-to-br from-blue-950 to-purple-950 !bg-clip-text !text-transparent !font-extrabold !border-2 border-blue-950"
-          class="flex items-center content-center gap-2 px-4 py-2 rounded-lg text-sm font-medium  border border-slate-500  text-slate-500">
-          <i class="fa-regular fa-file-lines"></i>
-          My Posts
-        </button>
-        <button routerLink="Saved" routerLinkActive="!bg-gradient-to-br from-blue-950 to-purple-950 !bg-clip-text !text-transparent !font-extrabold !border-2 border-blue-950"
-          class="flex items-center content-center gap-2 px-4 py-2 rounded-lg text-sm font-medium  border border-slate-500 text-slate-500">
-          <i class="fa-solid fa-bookmark"></i>
-          Saved
-        </button>
+        <span routerLinkActive="!bg-gradient-to-r from-blue-50 to-purple-50">
+          <button routerLink="myposts"
+            routerLinkActive="!bg-gradient-to-br from-blue-950 to-purple-950 !bg-clip-text !text-transparent !font-extrabold !border-2 !border-purple-950"
+            class="flex items-center content-center gap-2 px-4 py-2 rounded-lg text-sm font-medium  border border-slate-500  text-slate-500">
+            <i class="fa-regular fa-file-lines"></i>
+            My Posts
+          </button>
+        </span>
+        <span routerLinkActive="!bg-gradient-to-r from-blue-50 to-purple-50">
+          <button routerLink="Saved"
+            routerLinkActive="!bg-gradient-to-br from-blue-950 to-purple-950 !bg-clip-text !text-transparent !font-extrabold !border-2 !border-purple-950"
+            class="flex items-center content-center gap-2 px-4 py-2 rounded-lg text-sm font-medium  border border-slate-500 text-slate-500">
+            <i class="fa-solid fa-bookmark"></i>
+            Saved
+          </button>
+        </span>
       </div>
       <span
         class="bg-gradient-to-br from-blue-950 to-purple-950  text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">{{listLength}}</span>
